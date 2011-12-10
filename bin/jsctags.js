@@ -270,4 +270,6 @@ if (opts.hasOwnProperty('jsonp')) {
     tags.write(out, opts);
 }
 
-out.end();
+if (out != process.stdout) {
+    out.end();
+}
