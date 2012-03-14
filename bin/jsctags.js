@@ -39,12 +39,12 @@
 var argv = process.argv;
 var path = require('path');
 
-var _ = require('underscore')._;
+var _ = require('../lib/jsctags/underscore')._;
 var fs = require('fs');
 var util = require('util');
-var ctags = require('ctags');
-var getopt = require('getopt').getopt;
-var log = require('log');
+var ctags = require('../lib/jsctags/ctags');
+var getopt = require('../lib/jsctags/getopt').getopt;
+var log = require('../lib/jsctags/log');
 var Tags = ctags.Tags;
 
 function usage() {
@@ -102,8 +102,8 @@ var tags = new Tags();
 
 // Ascend the directory hierarchy to find the CommonJS package this module is
 // in, if any.
-function getModuleInfo(fullPath) {
-    function commonJS(modulePath, packageId) {
+function getModuleInfo (fullPath) {
+    function commonJS (modulePath, packageId) {
         var ext = path.extname(modulePath), len = modulePath.length;
         var modulePart = modulePath.substring(0, len - ext.length);
         var moduleId = (packageId != null)
@@ -170,7 +170,7 @@ function getModuleInfo(fullPath) {
 }
 
 var idsSeen = {};
-function processPath(p) {
+function processPath (p) {
     var st = fs.statSync(p);
     var id = idFor(st);
     if (id in idsSeen) {
