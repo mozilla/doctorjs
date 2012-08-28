@@ -36,6 +36,8 @@
  *
  * ***** END LICENSE BLOCK ***** */
 
+var VERSION = "0.1";
+
 var argv = process.argv;
 var path = require('path');
 
@@ -53,6 +55,7 @@ function usage() {
     util.puts("    -f, --output file     place output in the given file (-f " +
              "- for stdout)");
     util.puts("    -h, --help            display this usage info");
+    util.puts("    -v, --version         display version information");
     util.puts("    -j, --jsonp function  use JSONP with a function name");
     util.puts("    -o, --output file     synonym for -f");
     util.puts("        --oneprog         combine all inputs into one program");
@@ -65,7 +68,7 @@ function usage() {
 
 var opts;
 try {
-    opts = getopt("help|h", "jsonp|j=s", "libroot|L=s@", "oneprog", "output|o|f=s",
+    opts = getopt("version|v", "help|h", "jsonp|j=s", "libroot|L=s@", "oneprog", "output|o|f=s",
                   "sort|=s", "warning|W=s");
 } catch (e) {
     util.puts(e);
@@ -73,7 +76,9 @@ try {
 }
 
 var pathCount = argv.length - 2;
-if (opts.help || pathCount === 0) {
+if (opts.version) {
+    util.puts("DoctorJS (jsctags) Version " + VERSION);
+} else if (opts.help || pathCount === 0) {
     usage();
 }
 
