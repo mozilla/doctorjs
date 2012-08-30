@@ -1,6 +1,7 @@
 PREFIX=/usr/local
 INSTALL=install
 NODE=node
+NODE_PATH=`pwd`/lib/jsctags
 PROFILE=~/.profile
 
 BIN_SRC=$(addprefix bin/,jsctags.js)
@@ -43,7 +44,7 @@ serve:
 	$(NODE) serve.js
 
 tags:
-	$(NODE) bin/jsctags.js -Llib/jsctags js lib/jsctags
+	NODE_PATH=$(NODE_PATH) $(NODE) bin/jsctags.js js lib/jsctags
 
 .PHONY:	all install uninstall serve tags
 
