@@ -1,16 +1,17 @@
-#!/usr/bin/env node
+//#!/usr/bin/env node
+var tags = require('../lib/jsctags/ctags').Tags,
+    fs = require('fs'),
+    util = require('util'),
+    path = require('path'),
+    argv = process.argv;
 
-var argv = process.argv;
-var path = require('path');
-require.paths.unshift(path.join(path.dirname(argv[1]), "..", "lib",
-    "jsctags"));
+tags = new tags();
 
-var ctags = require('ctags'), fs = require('fs'), util = require('util');
-
-var tags = new ctags.Tags();
-var str = fs.readFileSync(argv[2]);
-tags.readString(str);
-
-var result = (argv.length >= 4) ? tags.stem(argv[3]) : tags.tags;
-util.puts(util.inspect(result));
-
+fs.readFile(argv[2], 'utf-8', function (e, data) {
+  if (e) throw e;
+  //tags.readString(data);
+  tags.scan(data, argv[2]);
+  
+  var result = (argv.length >= 4) ? tags.stem(argv[3]) : tags.tags;
+  util.puts(util.inspect(result));
+});

@@ -2,7 +2,10 @@
     "name": "ctags",
     "description": "Intelligent code indexing for JavaScript",
     "version": "0.1.0",
-    "keywords": [ "ctags", "tags" ],
+    "keywords": [
+        "ctags",
+        "tags"
+    ],
     "maintainers": [
         {
             "name": "Patrick Walton",

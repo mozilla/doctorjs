@@ -38,7 +38,7 @@
 // This module is set up to be dependency-less so that Narwhal
 // will be able to run it right away.
 
-bespin.useBespin = function(element, options) {
+bespin.useBespin = function (element, options) {
     var baseConfig = %s;
     options = options || {};
     for (var key in options) {
@@ -49,7 +49,7 @@ bespin.useBespin = function(element, options) {
     return appconfig.launch(baseConfig);
 };
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     var nodes = document.querySelectorAll(".bespin");
     for (var i = 0; i < nodes.length; i++) {
         var node = nodes[i];

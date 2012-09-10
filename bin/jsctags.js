@@ -102,8 +102,8 @@ var tags = new Tags();
 
 // Ascend the directory hierarchy to find the CommonJS package this module is
 // in, if any.
-function getModuleInfo(fullPath) {
-    function commonJS(modulePath, packageId) {
+function getModuleInfo (fullPath) {
+    function commonJS (modulePath, packageId) {
         var ext = path.extname(modulePath), len = modulePath.length;
         var modulePart = modulePath.substring(0, len - ext.length);
         var moduleId = (packageId != null)
@@ -170,7 +170,7 @@ function getModuleInfo(fullPath) {
 }
 
 var idsSeen = {};
-function processPath(p) {
+function processPath (p) {
     var st = fs.statSync(p);
     var id = idFor(st);
     if (id in idsSeen) {
