@@ -39,12 +39,12 @@
 var argv = process.argv;
 var path = require('path');
 
-var _ = require('underscore')._;
+var _ = require('../lib/jsctags/underscore')._;
 var fs = require('fs');
 var util = require('util');
-var ctags = require('ctags');
-var getopt = require('getopt').getopt;
-var log = require('log');
+var ctags = require('../lib/jsctags/ctags');
+var getopt = require('../lib/jsctags/getopt').getopt;
+var log = require('../lib/jsctags/log');
 var Tags = ctags.Tags;
 
 function usage() {
