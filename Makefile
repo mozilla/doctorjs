@@ -31,6 +31,9 @@ install:
 	@echo "\nIf you want to use jsctags right here, right now,\n\
 	please type this in your terminal:\n\n\
 	    . $(PROFILE)\n"
+	@echo "\nIf you want jsctags to work anywhere in the terminal,\n\
+	add this to your ~/.bashrc (Linux) or ~/.bash_profile (OSX):\n\n\
+        NODE_PATH='$(PREFIX)/lib/jsctags:\$${NODE_PATH}'\n"
 
 uninstall:
 	rm -rf $(BIN_SRC:%.js=$(PREFIX)/%) $(PREFIX)/lib/jsctags \
