@@ -12,21 +12,21 @@ Origin	check-3d-cube.js	/^var Origin = new Object();$/;"	v	lineno:9	type:<null |
 Testing	check-3d-cube.js	/^var Testing = new Object();$/;"	v	lineno:10	type:<null | Object>
 LoopTimer	check-3d-cube.js	/^var LoopTimer;$/;"	v	lineno:11	type:any
 DisplArea	check-3d-cube.js	/^var DisplArea = new Object();$/;"	v	lineno:13	type:<null | Object>
-DrawLine	check-3d-cube.js	/^function DrawLine(From, To) {$/;"	f	lineno:17	type:void function(CreateP, CreateP)
-CalcCross	check-3d-cube.js	/^function CalcCross(V0, V1) {$/;"	f	lineno:70	type:Array[number] function(Array[number], Array[number])
-CalcNormal	check-3d-cube.js	/^function CalcNormal(V0, V1, V2) {$/;"	f	lineno:78	type:Array[number] function(Array[number], Array[number], Array[number])
-CreateP	check-3d-cube.js	/^function CreateP(X,Y,Z) {$/;"	f	lineno:91	type:<void | CreateP> function(number, number, number)
-MMulti	check-3d-cube.js	/^function MMulti(M1, M2) {$/;"	f	lineno:96	type:Array[Array[number]] function(<Array[Array[number]] | Array>, <Array[Array[number]] | Array>)
-VMulti	check-3d-cube.js	/^function VMulti(M, V) {$/;"	f	lineno:108	type:Array[number] function(<Array[Array[number]] | Array>, Array[number])
-VMulti2	check-3d-cube.js	/^function VMulti2(M, V) {$/;"	f	lineno:115	type:Array[number] function(<Array[Array[number]] | Array>, Array[number])
-MAdd	check-3d-cube.js	/^function MAdd(M1, M2) {$/;"	f	lineno:123	type:Array[Array] function(any, any)
-Translate	check-3d-cube.js	/^function Translate(M, Dx, Dy, Dz) {$/;"	f	lineno:134	type:Array[Array[number]] function(<Array[Array[number]] | Array>, number, number, number)
-RotateX	check-3d-cube.js	/^function RotateX(M, Phi) {$/;"	f	lineno:144	type:Array[Array[number]] function(<Array[Array[number]] | Array>, number)
-RotateY	check-3d-cube.js	/^function RotateY(M, Phi) {$/;"	f	lineno:158	type:Array[Array[number]] function(<Array[Array[number]] | Array>, number)
-RotateZ	check-3d-cube.js	/^function RotateZ(M, Phi) {$/;"	f	lineno:172	type:Array[Array[number]] function(<Array[Array[number]] | Array>, number)
-DrawQube	check-3d-cube.js	/^function DrawQube() {$/;"	f	lineno:186	type:void function()
-Loop	check-3d-cube.js	/^function Loop() {$/;"	f	lineno:232	type:void function()
-Init	check-3d-cube.js	/^function Init(CubeSize) {$/;"	f	lineno:251	type:void function(number)
+DrawLine	check-3d-cube.js	/^function DrawLine(From, To) {$/;"	f	lineno:17	type:void function (CreateP, CreateP)
+CalcCross	check-3d-cube.js	/^function CalcCross(V0, V1) {$/;"	f	lineno:70	type:Array[number] function (Array[number], Array[number])
+CalcNormal	check-3d-cube.js	/^function CalcNormal(V0, V1, V2) {$/;"	f	lineno:78	type:Array[number] function (Array[number], Array[number], Array[number])
+CreateP	check-3d-cube.js	/^function CreateP(X,Y,Z) {$/;"	f	lineno:91	type:<void | CreateP> function (number, number, number)
+MMulti	check-3d-cube.js	/^function MMulti(M1, M2) {$/;"	f	lineno:96	type:Array[Array[number]] function (<Array[Array[number]] | Array>, <Array[Array[number]] | Array>)
+VMulti	check-3d-cube.js	/^function VMulti(M, V) {$/;"	f	lineno:108	type:Array[number] function (<Array[Array[number]] | Array>, Array[number])
+VMulti2	check-3d-cube.js	/^function VMulti2(M, V) {$/;"	f	lineno:115	type:Array[number] function (<Array[Array[number]] | Array>, Array[number])
+MAdd	check-3d-cube.js	/^function MAdd(M1, M2) {$/;"	f	lineno:123	type:Array[Array] function (any, any)
+Translate	check-3d-cube.js	/^function Translate(M, Dx, Dy, Dz) {$/;"	f	lineno:134	type:Array[Array[number]] function (<Array[Array[number]] | Array>, number, number, number)
+RotateX	check-3d-cube.js	/^function RotateX(M, Phi) {$/;"	f	lineno:144	type:Array[Array[number]] function (<Array[Array[number]] | Array>, number)
+RotateY	check-3d-cube.js	/^function RotateY(M, Phi) {$/;"	f	lineno:158	type:Array[Array[number]] function (<Array[Array[number]] | Array>, number)
+RotateZ	check-3d-cube.js	/^function RotateZ(M, Phi) {$/;"	f	lineno:172	type:Array[Array[number]] function (<Array[Array[number]] | Array>, number)
+DrawQube	check-3d-cube.js	/^function DrawQube() {$/;"	f	lineno:186	type:void function ()
+Loop	check-3d-cube.js	/^function Loop() {$/;"	f	lineno:232	type:void function ()
+Init	check-3d-cube.js	/^function Init(CubeSize) {$/;"	f	lineno:251	type:void function (number)
 i	check-3d-cube.js	/^for ( var i = 20; i <= 160; i *= 2 ) {$/;"	v	lineno:326	type:any
 actual	check-3d-cube.js	/^var actual = '';$/;"	v	lineno:330	type:string
 i	check-3d-cube.js	/^for (var i = 0; i < Q.length; ++i) {$/;"	v	lineno:331	type:number

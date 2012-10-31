@@ -44,13 +44,13 @@ const CHILDREN_KEYS =
 var myast;
 
 function parse() {
-    tiki.ensurePackage('::narcissus', function() {
+    tiki.ensurePackage('::narcissus', function () {
         var require = tiki.require;
         var parse = require('narcissus').parse;
         var jsdefs = require('narcissus:jsdefs');
         var tokenIds = jsdefs.tokenIds;
 
-        var astToJSON = function(ast) {
+        var astToJSON = function (ast) {
             var desc;
             if (ast.type in jsdefs.tokens) {
                 desc = jsdefs.tokens[ast.type];
@@ -81,7 +81,7 @@ function parse() {
 
             var children = [];
             for (var i=0, len=ast.length; i<len; i++) children.push(ast[i]);
-            CHILDREN_KEYS.forEach(function(childKey) {
+            CHILDREN_KEYS.forEach(function (childKey) {
                 if (!(childKey in ast)) {
                     return;
                 }

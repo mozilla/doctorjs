@@ -4,23 +4,23 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-toJSONString	check-string-tagcloud.js	/^    Array.prototype.toJSONString = function (w) {$/;"	f	lineno:40	type:string function(any)
-toJSONString	check-string-tagcloud.js	/^    Boolean.prototype.toJSONString = function () {$/;"	f	lineno:72	type:string function()
-toJSONString	check-string-tagcloud.js	/^    Date.prototype.toJSONString = function () {$/;"	f	lineno:77	type:string function()
-f	check-string-tagcloud.js	/^        function f(n) {$/;"	f	lineno:79	type:string function(any)
-toJSONString	check-string-tagcloud.js	/^    Number.prototype.toJSONString = function () {$/;"	f	lineno:93	type:string function()
-toJSONString	check-string-tagcloud.js	/^    Object.prototype.toJSONString = function (w) {$/;"	f	lineno:99	type:string function(undefined)
-%anonymous_function	check-string-tagcloud.js	/^    (function (s) {$/;"	f	lineno:164	type:void function(String)
-parseJSON	check-string-tagcloud.js	/^        s.parseJSON = function (filter) {$/;"	f	lineno:177	type:number function(number function(string, any))
-walk	check-string-tagcloud.js	/^            function walk(k, v) {$/;"	f	lineno:180	type:number function(string, any)
-toJSONString	check-string-tagcloud.js	/^        s.toJSONString = function () {$/;"	f	lineno:208	type:string function()
-%anonymous_function	check-string-tagcloud.js	/^                return '"' + this.replace(\/[\\x00-\\x1f\\\\"]\/g, function (a) {$/;"	f	lineno:211	type:string function(any)
+toJSONString	check-string-tagcloud.js	/^    Array.prototype.toJSONString = function (w) {$/;"	f	lineno:40	type:string function (any)
+toJSONString	check-string-tagcloud.js	/^    Boolean.prototype.toJSONString = function () {$/;"	f	lineno:72	type:string function ()
+toJSONString	check-string-tagcloud.js	/^    Date.prototype.toJSONString = function () {$/;"	f	lineno:77	type:string function ()
+f	check-string-tagcloud.js	/^        function f(n) {$/;"	f	lineno:79	type:string function (any)
+toJSONString	check-string-tagcloud.js	/^    Number.prototype.toJSONString = function () {$/;"	f	lineno:93	type:string function ()
+toJSONString	check-string-tagcloud.js	/^    Object.prototype.toJSONString = function (w) {$/;"	f	lineno:99	type:string function (undefined)
+%anonymous_function	check-string-tagcloud.js	/^    (function (s) {$/;"	f	lineno:164	type:void function (String)
+parseJSON	check-string-tagcloud.js	/^        s.parseJSON = function (filter) {$/;"	f	lineno:177	type:number function (number function (string, any))
+walk	check-string-tagcloud.js	/^            function walk(k, v) {$/;"	f	lineno:180	type:number function (string, any)
+toJSONString	check-string-tagcloud.js	/^        s.toJSONString = function () {$/;"	f	lineno:208	type:string function ()
+%anonymous_function	check-string-tagcloud.js	/^                return '"' + this.replace(\/[\\x00-\\x1f\\\\"]\/g, function (a) {$/;"	f	lineno:211	type:string function (any)
 tagInfoJSON	check-string-tagcloud.js	/^var tagInfoJSON = "";$/;"	v	lineno:226	type:string
 log2	check-string-tagcloud.js	/^var log2 = Math.log(2);$/;"	v	lineno:228	type:number
-tagInfo	check-string-tagcloud.js	/^var tagInfo = tagInfoJSON.parseJSON(function(a, b) { if (a == "popularity") { return Math.log(b) \/ log2; } else {return b; } });$/;"	v	lineno:229	type:<number | null>
-%anonymous_function	check-string-tagcloud.js	/^var tagInfo = tagInfoJSON.parseJSON(function(a, b) { if (a == "popularity") { return Math.log(b) \/ log2; } else {return b; } });$/;"	f	lineno:229	type:number function(string, any)
-makeTagCloud	check-string-tagcloud.js	/^function makeTagCloud(tagInfo)$/;"	f	lineno:231	type:string function(number)
-%anonymous_function	check-string-tagcloud.js	/^    tagInfo.sort(function(a, b) { if (a.tag < b.tag) { return -1; } else if (a.tag == b.tag) { return 0; } else return 1; });$/;"	f	lineno:235	type:number function(any, any)
+tagInfo	check-string-tagcloud.js	/^var tagInfo = tagInfoJSON.parseJSON(function (a, b) { if (a == "popularity") { return Math.log(b) \/ log2; } else {return b; } });$/;"	v	lineno:229	type:<number | null>
+%anonymous_function	check-string-tagcloud.js	/^var tagInfo = tagInfoJSON.parseJSON(function (a, b) { if (a == "popularity") { return Math.log(b) \/ log2; } else {return b; } });$/;"	f	lineno:229	type:number function (string, any)
+makeTagCloud	check-string-tagcloud.js	/^function makeTagCloud(tagInfo)$/;"	f	lineno:231	type:string function (number)
+%anonymous_function	check-string-tagcloud.js	/^    tagInfo.sort(function (a, b) { if (a.tag < b.tag) { return -1; } else if (a.tag == b.tag) { return 0; } else return 1; });$/;"	f	lineno:235	type:number function (any, any)
 tagcloud	check-string-tagcloud.js	/^var tagcloud = makeTagCloud(tagInfo);$/;"	v	lineno:264	type:string
-tagcloud_norm	check-string-tagcloud.js	/^var tagcloud_norm = tagcloud.replace(\/([0-9.]+)px\/g, function(str, p1) { return p1.substr(0, 10) + 'px' })$/;"	v	lineno:269	type:string
-%anonymous_function	check-string-tagcloud.js	/^var tagcloud_norm = tagcloud.replace(\/([0-9.]+)px\/g, function(str, p1) { return p1.substr(0, 10) + 'px' })$/;"	f	lineno:269	type:string function(any, any)
+tagcloud_norm	check-string-tagcloud.js	/^var tagcloud_norm = tagcloud.replace(\/([0-9.]+)px\/g, function (str, p1) { return p1.substr(0, 10) + 'px' })$/;"	v	lineno:269	type:string
+%anonymous_function	check-string-tagcloud.js	/^var tagcloud_norm = tagcloud.replace(\/([0-9.]+)px\/g, function (str, p1) { return p1.substr(0, 10) + 'px' })$/;"	f	lineno:269	type:string function (any, any)

@@ -120,7 +120,7 @@ function parseOpts(argv, callback) {
     return;
   }
 
-  require('fs').stat(path.normalize(dir), function(err, stats) {
+  require('fs').stat(path.normalize(dir), function (err, stats) {
     if (!stats || !stats.isDirectory())
       callback("bad directory", null);
     else
@@ -140,8 +140,10 @@ function makeSiteHandler(dir, service) {
 
   return function (req, resp) {
     var query = url.parse(req.url).pathname;
-
+    
+	console.log('\n', query);
     if (service && query === '/analyze') {
+	  console.log('\nanalyze ...');
       servetypes.analyze(cwd, req, resp);
       return;
     }
@@ -183,7 +185,7 @@ function service(req, resp) {
   servetypes.analyze(cwd, req, resp);
 }
 
-parseOpts(argv.slice(2), function(err, opts) {
+parseOpts(argv.slice(2), function (err, opts) {
   if (err)
     usage(err);
 

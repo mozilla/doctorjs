@@ -40,13 +40,13 @@ require.paths.unshift('./lib/jsctags');
 var http = require('http'), paperboy = require('paperboy');
 var util = require('util');
 
-http.createServer(function(req, resp) {
+http.createServer(function (req, resp) {
 	paperboy.deliver(__dirname, req, resp).
-		error(function(code, msg) {
+		error(function (code, msg) {
 			resp.writeHead(code, { "Content-type": "text/plain" });
 			resp.close();
 		}).
-		otherwise(function(err) {
+		otherwise(function (err) {
 			resp.writeHead(404, { "Content-type": "text/plain" });
 			resp.close();
 		});

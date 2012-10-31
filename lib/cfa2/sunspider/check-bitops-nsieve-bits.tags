@@ -5,8 +5,8 @@
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
 result	check-bitops-nsieve-bits.js	/^var result = [];$/;"	v	lineno:6	type:Array[number]
-pad	check-bitops-nsieve-bits.js	/^function pad(n,width) {$/;"	f	lineno:8	type:string function(any, any)
-primes	check-bitops-nsieve-bits.js	/^function primes(isPrime, n) {$/;"	f	lineno:14	type:void function(Array[number], number)
-sieve	check-bitops-nsieve-bits.js	/^function sieve() {$/;"	f	lineno:27	type:void function()
+pad	check-bitops-nsieve-bits.js	/^function pad(n,width) {$/;"	f	lineno:8	type:string function (any, any)
+primes	check-bitops-nsieve-bits.js	/^function primes(isPrime, n) {$/;"	f	lineno:14	type:void function (Array[number], number)
+sieve	check-bitops-nsieve-bits.js	/^function sieve() {$/;"	f	lineno:27	type:void function ()
 ret	check-bitops-nsieve-bits.js	/^var ret = 0;$/;"	v	lineno:36	type:number
 i	check-bitops-nsieve-bits.js	/^for (var i = 0; i < result.length; ++i)$/;"	v	lineno:37	type:number

@@ -50,7 +50,7 @@ var settings = require('settings').settings;
 var DEBUG_TEXT_RANGES = false;
 
 
-exports.TextView = function(container, editor) {
+exports.TextView = function (container, editor) {
     CanvasView.call(this, container, true /* preventDownsize */ );
     this.editor = editor;
 
@@ -113,7 +113,7 @@ util.mixin(exports.TextView.prototype, {
     willReplaceRange: null,
     replacedCharacters: null,
 
-    editorWillChangeBuffer: function(newBuffer) {
+    editorWillChangeBuffer: function (newBuffer) {
         // Remove events from the old layoutManager.
         var layoutManager = this.editor.layoutManager;
         layoutManager.invalidatedRects.remove(this);
@@ -127,15 +127,15 @@ util.mixin(exports.TextView.prototype, {
                                 this.layoutManagerChangedTextAtRow.bind(this));
     },
 
-    didFocus: function() {
+    didFocus: function () {
         this.hasFocus = true;
     },
 
-    didBlur: function() {
+    didBlur: function () {
         this.hasFocus = false;
     },
 
-    _drag: function() {
+    _drag: function () {
         var point = this._dragPoint;
         var offset = Rect.offsetFromRect(this.clippingFrame, point);
 
@@ -146,7 +146,7 @@ util.mixin(exports.TextView.prototype, {
     },
 
     // Draws a single insertion point.
-    _drawInsertionPoint: function(rect, context) {
+    _drawInsertionPoint: function (rect, context) {
         if (!this._insertionPointVisible) {
             return;
         }
@@ -178,7 +178,7 @@ util.mixin(exports.TextView.prototype, {
         context.restore();
     },
 
-    _drawLines: function(rect, context) {
+    _drawLines: function (rect, context) {
         var layoutManager = this.editor.layoutManager;
         var textLines = layoutManager.textLines;
         var lineAscent = layoutManager.fontDimension.lineAscent;
@@ -248,7 +248,7 @@ util.mixin(exports.TextView.prototype, {
     },
 
     // Draws the background highlight for selections.
-    _drawSelectionHighlight: function(rect, context) {
+    _drawSelectionHighlight: function (rect, context) {
         var theme = this.editor.themeData.editor;
         var fillStyle = this._hasFocus ?
             theme.selectedTextBackgroundColor :
@@ -259,7 +259,7 @@ util.mixin(exports.TextView.prototype, {
 
         var range = Range.normalizeRange(this.editor.buffer._selectedRange);
         context.fillStyle = fillStyle;
-        layoutManager.rectsForRange(range).forEach(function(rect) {
+        layoutManager.rectsForRange(range).forEach(function (rect) {
             context.fillRect(rect.x, rect.y, rect.width, rect.height);
         });
 
@@ -267,7 +267,7 @@ util.mixin(exports.TextView.prototype, {
     },
 
     // Draws either the selection or the insertion point.
-    _drawSelection: function(rect, context) {
+    _drawSelection: function (rect, context) {
         if (this._rangeIsInsertionPoint(this.editor.buffer._selectedRange)) {
             this._drawInsertionPoint(rect, context);
         } else {
@@ -275,7 +275,7 @@ util.mixin(exports.TextView.prototype, {
         }
     },
 
-    _getVirtualSelection: function(startPropertyAsWell) {
+    _getVirtualSelection: function (startPropertyAsWell) {
         var selectedRange = this.editor.buffer._selectedRange;
         var selectedRangeEndVirtual = this.editor.buffer._selectedRangeEndVirtual;
 
@@ -286,8 +286,8 @@ util.mixin(exports.TextView.prototype, {
         };
     },
 
-    _invalidateSelection: function() {
-        var adjustRect = function(rect) {
+    _invalidateSelection: function () {
+        var adjustRect = function (rect) {
             return {
                 x:      rect.x - 1,
                 y:      rect.y,
@@ -300,7 +300,7 @@ util.mixin(exports.TextView.prototype, {
         var range = Range.normalizeRange(this.editor.buffer._selectedRange);
         if (!this._rangeIsInsertionPoint(range)) {
             var rects = layoutManager.rectsForRange(range);
-            rects.forEach(function(rect) {
+            rects.forEach(function (rect) {
                 this.invalidateRect(adjustRect(rect));
             }, this);
 
@@ -311,21 +311,21 @@ util.mixin(exports.TextView.prototype, {
         this.invalidateRect(adjustRect(rect));
     },
 
-    _isReadOnly: function() {
+    _isReadOnly: function () {
         return this.editor.layoutManager.textStorage.readOnly;
     },
 
-    _keymappingChanged: function() {
+    _keymappingChanged: function () {
         this._keyBuffer = '';
         this._keyState = 'start';
     },
 
     // TODO: Do we need this anymore?
-    // _parentViewChanged: function() {
+    // _parentViewChanged: function () {
     //     this._updateEnclosingScrollView();
     // }.observes('parentView'),
 
-    _performVerticalKeyboardSelection: function(offset) {
+    _performVerticalKeyboardSelection: function (offset) {
         var textStorage = this.editor.layoutManager.textStorage;
         var selectedRangeEndVirtual = this.editor.buffer._selectedRangeEndVirtual;
         var oldPosition = selectedRangeEndVirtual !== null ?
@@ -336,11 +336,11 @@ util.mixin(exports.TextView.prototype, {
         this.moveCursorTo(newPosition, true, true);
     },
 
-    _rangeIsInsertionPoint: function(range) {
+    _rangeIsInsertionPoint: function (range) {
         return Range.isZeroLength(range);
     },
 
-    _rearmInsertionPointBlinkTimer: function() {
+    _rearmInsertionPointBlinkTimer: function () {
         if (!this._insertionPointVisible) {
             // Make sure it ends up visible.
             this.blinkInsertionPoint();
@@ -357,7 +357,7 @@ util.mixin(exports.TextView.prototype, {
 
     // Moves the selection, if necessary, to keep all the positions pointing to
     // actual characters.
-    _repositionSelection: function() {
+    _repositionSelection: function () {
         var textLines = this.editor.layoutManager.textLines;
         var textLineLength = textLines.length;
 
@@ -378,14 +378,14 @@ util.mixin(exports.TextView.prototype, {
         });
     },
 
-    _scrollPage: function(scrollUp) {
+    _scrollPage: function (scrollUp) {
         var clippingFrame = this.clippingFrame;
         var lineAscent = this.editor.layoutManager.fontDimension.lineAscent;
         this.editor.scrollBy(0,
                     (clippingFrame.height + lineAscent) * (scrollUp ? -1 : 1));
     },
 
-    _scrollWhileDragging: function() {
+    _scrollWhileDragging: function () {
         var point = this._dragPoint;
         var newPoint = this.computeWithClippingFrame(point.layerX, point.layerY);
         util.mixin(this._dragPoint, newPoint);
@@ -394,7 +394,7 @@ util.mixin(exports.TextView.prototype, {
 
 	// TODO: Add this back.
 	//       Q: Why is calling _updateSyntax necessary?
-    _scrolled: function() {
+    _scrolled: function () {
         var scrollView = this._enclosingScrollView;
         var x = scrollView.horizontalScrollOffset;
         var y = scrollView.verticalScrollOffset;
@@ -409,13 +409,13 @@ util.mixin(exports.TextView.prototype, {
 
     // Returns the character closest to the given point, obeying the selection
     // rules (including the partialFraction field).
-    _selectionPositionForPoint: function(point) {
+    _selectionPositionForPoint: function (point) {
         var position = this.editor.layoutManager.characterAtPoint(point);
         return position.partialFraction < 0.5 ? position :
             Range.addPositions(position, { row: 0, col: 1 });
     },
 
-    _syntaxManagerUpdatedSyntaxForRows: function(startRow, endRow) {
+    _syntaxManagerUpdatedSyntaxForRows: function (startRow, endRow) {
         if (startRow === endRow) {
             return;
         }
@@ -432,7 +432,7 @@ util.mixin(exports.TextView.prototype, {
     // TODO: Necessary anymore?
     // // Updates the _enclosingScrollView instance member and (re-)registers
     // // observers appropriately.
-    // _updateEnclosingScrollView: function() {
+    // _updateEnclosingScrollView: function () {
     //     if (!util.none(this._enclosingScrollView)) {
     //         var enclosingScrollView = this._enclosingScrollView;
     //         enclosingScrollView.removeObserver('horizontalScrollOffset', this,
@@ -459,7 +459,7 @@ util.mixin(exports.TextView.prototype, {
     // Instructs the syntax manager to begin highlighting from the given row to
     // the end of the visible range, or within the entire visible range if the
     // row is null.
-    _updateSyntax: function(row) {
+    _updateSyntax: function (row) {
         var layoutManager = this.editor.layoutManager;
         var visibleRange = layoutManager.characterRangeForBoundingRect(this.
             clippingFrame);
@@ -478,7 +478,7 @@ util.mixin(exports.TextView.prototype, {
         var syntaxManager = layoutManager.syntaxManager;
         var lastRow = Math.min(lines.length, endRow + 1);
         syntaxManager.updateSyntaxForRows(startRow, lastRow).
-            then(function(result) {
+            then(function (result) {
                 self._syntaxManagerUpdatedSyntaxForRows(result.startRow,
                     result.endRow);
             });
@@ -487,7 +487,7 @@ util.mixin(exports.TextView.prototype, {
     /**
      * Toggles the visible state of the insertion point.
      */
-    blinkInsertionPoint: function() {
+    blinkInsertionPoint: function () {
         this._insertionPointVisible = !this._insertionPointVisible;
         this._invalidateSelection();
     },
@@ -496,21 +496,21 @@ util.mixin(exports.TextView.prototype, {
      * Updates the syntax information. Automatically called when the clipping
      * frame of the text view changes.
      */
-    clippingFrameChanged: function() {
+    clippingFrameChanged: function () {
         this._updateSyntax(null);
     },
 
     /**
      * Returns the selected characters.
      */
-    copy: function() {
+    copy: function () {
         return this.getSelectedCharacters();
     },
 
     /**
      * Removes the selected characters from the text buffer and returns them.
      */
-    cut: function() {
+    cut: function () {
         var cutData = this.getSelectedCharacters();
 
         if (cutData != '') {
@@ -524,7 +524,7 @@ util.mixin(exports.TextView.prototype, {
      * This is where the editor is painted from head to toe. Pitiful tricks are
      * used to draw as little as possible.
      */
-    drawRect: function(rect, context) {
+    drawRect: function (rect, context) {
         context.fillStyle = this.editor.themeData.editor.backgroundColor;
         context.fillRect(rect.x, rect.y, rect.width, rect.height);
 
@@ -535,7 +535,7 @@ util.mixin(exports.TextView.prototype, {
     /**
      * Directs keyboard input to this text view.
      */
-    focus: function() {
+    focus: function () {
         this.textInput.focus();
     },
 
@@ -543,7 +543,7 @@ util.mixin(exports.TextView.prototype, {
      * Returns the characters that are currently selected as a string, or the
      * empty string if none are selected.
      */
-    getSelectedCharacters: function() {
+    getSelectedCharacters: function () {
         return this._rangeIsInsertionPoint(this.editor.buffer._selectedRange) ? '' :
             this.editor.layoutManager.textStorage.getCharacters(Range.
             normalizeRange(this.editor.buffer._selectedRange));
@@ -556,7 +556,7 @@ util.mixin(exports.TextView.prototype, {
      *            'start' field will be the selection origin, and the 'end'
      *            field will always be the selection tail.
      */
-    getSelectedRange: function(raw) {
+    getSelectedRange: function (raw) {
         if (!raw) {
             return Range.normalizeRange(this.editor.buffer._selectedRange);
         } else {
@@ -569,7 +569,7 @@ util.mixin(exports.TextView.prototype, {
      * Nested change groups are supported; one undoable action is created for
      * the entire group of changes.
      */
-    groupChanges: function(performChanges) {
+    groupChanges: function (performChanges) {
         if (this._inChangeGroup) {
             performChanges();
             return;
@@ -593,12 +593,12 @@ util.mixin(exports.TextView.prototype, {
      * @return True if the text view was successfully updated; false if the
      *     change couldn't be made because the text view is read-only.
      */
-    insertText: function(text) {
+    insertText: function (text) {
         if (this._isReadOnly()) {
             return false;
         }
 
-        this.groupChanges(function() {
+        this.groupChanges(function () {
             var textStorage = this.editor.layoutManager.textStorage;
             var range = Range.normalizeRange(this.editor.buffer._selectedRange);
 
@@ -630,11 +630,11 @@ util.mixin(exports.TextView.prototype, {
      *
      * TODO: Should this be moved out of the text view?
      */
-    isDelimiter: function(character) {
+    isDelimiter: function (character) {
         return '"\',;.!~@#$%^&*?[]<>():/\\-+ \t'.indexOf(character) !== -1;
     },
 
-    keyDown: function(evt) {
+    keyDown: function (evt) {
         if (evt.charCode === 0 || evt._charCode === 0 /* This is a hack for FF*/) {
             return keyboardManager.processKeyEvent(evt, this,
                 { isTextView: true });
@@ -652,7 +652,7 @@ util.mixin(exports.TextView.prototype, {
      * Runs the syntax highlighter from the given row to the end of the visible
      * range, and repositions the selection.
      */
-    layoutManagerChangedTextAtRow: function(sender, row) {
+    layoutManagerChangedTextAtRow: function (sender, row) {
         this._updateSyntax(row);
         this._repositionSelection();
     },
@@ -660,14 +660,14 @@ util.mixin(exports.TextView.prototype, {
     /**
      * Marks the given rectangles as invalid.
      */
-    layoutManagerInvalidatedRects: function(sender, rects) {
+    layoutManagerInvalidatedRects: function (sender, rects) {
         rects.forEach(this.invalidateRect, this);
 
         // TODO: Do we need this anymore?
         // this._resize();
     },
 
-    mouseDown: function(evt) {
+    mouseDown: function (evt) {
         util.stopEvent(evt);
 
         this.hasFocus = true;
@@ -696,7 +696,7 @@ util.mixin(exports.TextView.prototype, {
             var skipOnDelimiter = !this.isDelimiter(line[pos.col]);
 
             var thisTextView = this;
-            var searchForDelimiter = function(pos, dir) {
+            var searchForDelimiter = function (pos, dir) {
                 for (pos; pos > -1 && pos < line.length; pos += dir) {
                     if (thisTextView.isDelimiter(line[pos]) ===
                             skipOnDelimiter) {
@@ -734,7 +734,7 @@ util.mixin(exports.TextView.prototype, {
         this._dragTimer = setInterval(this._scrollWhileDragging.bind(this), 100);
     },
 
-    mouseMove: function(evt) {
+    mouseMove: function (evt) {
         if (this._mouseIsDown) {
             this._dragPoint = this.computeWithClippingFrame(evt.layerX, evt.layerY);
             util.mixin(this._dragPoint, { layerX: evt.layerX, layerY: evt.layerY});
@@ -742,7 +742,7 @@ util.mixin(exports.TextView.prototype, {
         }
     },
 
-    mouseUp: function(evt) {
+    mouseUp: function (evt) {
         this._mouseIsDown = false;
         if (this._dragTimer !== null) {
             clearInterval(this._dragTimer);
@@ -764,7 +764,7 @@ util.mixin(exports.TextView.prototype, {
      *        virtual insertion point. Typically, this parameter is set when
      *        moving vertically.
      */
-    moveCursorTo: function(position, select, virtual) {
+    moveCursorTo: function (position, select, virtual) {
         var textStorage = this.editor.layoutManager.textStorage;
         var positionToUse = textStorage.clampPosition(position);
 
@@ -791,7 +791,7 @@ util.mixin(exports.TextView.prototype, {
         this.scrollToPosition(this.editor.buffer._selectedRange.end);
     },
 
-    moveDown: function() {
+    moveDown: function () {
         var selection = this._getVirtualSelection();
         var range = Range.normalizeRange(selection);
         var position;
@@ -806,7 +806,7 @@ util.mixin(exports.TextView.prototype, {
         this.moveCursorTo(position, false, true);
     },
 
-    moveLeft: function() {
+    moveLeft: function () {
         var range = Range.normalizeRange(this.editor.buffer._selectedRange);
         if (this._rangeIsInsertionPoint(range)) {
             this.moveCursorTo(this.editor.layoutManager.textStorage.
@@ -816,7 +816,7 @@ util.mixin(exports.TextView.prototype, {
         }
     },
 
-    moveRight: function() {
+    moveRight: function () {
         var range = Range.normalizeRange(this.editor.buffer._selectedRange);
         if (this._rangeIsInsertionPoint(range)) {
             this.moveCursorTo(this.editor.layoutManager.textStorage.
@@ -826,7 +826,7 @@ util.mixin(exports.TextView.prototype, {
         }
     },
 
-    moveUp: function() {
+    moveUp: function () {
         var range = Range.normalizeRange(this._getVirtualSelection(true));
         position = Range.addPositions({
             row: range.start.row,
@@ -836,7 +836,7 @@ util.mixin(exports.TextView.prototype, {
         this.moveCursorTo(position, false, true);
     },
 
-    parentViewFrameChanged: function() {
+    parentViewFrameChanged: function () {
         arguments.callee.base.apply(this, arguments);
         this._resize();
     },
@@ -855,12 +855,12 @@ util.mixin(exports.TextView.prototype, {
      * @return True if the changes were successfully made; false if the changes
      *     couldn't be made because the editor is read-only.
      */
-    replaceCharacters: function(oldRange, characters) {
+    replaceCharacters: function (oldRange, characters) {
         if (this._isReadOnly()) {
             return false;
         }
 
-        this.groupChanges(function() {
+        this.groupChanges(function () {
             oldRange = Range.normalizeRange(oldRange);
             this.willReplaceRange(this, oldRange);
 
@@ -881,7 +881,7 @@ util.mixin(exports.TextView.prototype, {
      * @return True if the operation was successfully performed; false if the
      *     operation failed because the editor is read-only.
      */
-    performBackspaceOrDelete: function(isBackspace) {
+    performBackspaceOrDelete: function (isBackspace) {
         if (this._isReadOnly()) {
             return false;
         }
@@ -921,7 +921,7 @@ util.mixin(exports.TextView.prototype, {
             }
         }
 
-        this.groupChanges(function() {
+        this.groupChanges(function () {
             this.replaceCharacters(range, '');
 
             // Position the insertion point at the start of all the ranges that
@@ -933,7 +933,7 @@ util.mixin(exports.TextView.prototype, {
     },
 
     /** Removes all buffered keys. */
-    resetKeyBuffers: function() {
+    resetKeyBuffers: function () {
         this._keyBuffer = '';
         this._keyMetaBuffer = '';
     },
@@ -941,14 +941,14 @@ util.mixin(exports.TextView.prototype, {
     /**
      * If the text view is inside a scrollable view, scrolls down by one page.
      */
-    scrollPageDown: function() {
+    scrollPageDown: function () {
         this._scrollPage(false);
     },
 
     /**
      * If the text view is inside a scrollable view, scrolls up by one page.
      */
-    scrollPageUp: function() {
+    scrollPageUp: function () {
         this._scrollPage(true);
     },
 
@@ -956,7 +956,7 @@ util.mixin(exports.TextView.prototype, {
      * If this view is in a scrollable container, scrolls to the given
      * character position.
      */
-    scrollToPosition: function(position) {
+    scrollToPosition: function (position) {
         var rect = this.editor.layoutManager.characterRectForPosition(position);
         var rectX = rect.x, rectY = rect.y;
         var rectWidth = rect.width, rectHeight = rect.height;
@@ -989,7 +989,7 @@ util.mixin(exports.TextView.prototype, {
     /**
      * Selects all characters in the buffer.
      */
-    selectAll: function() {
+    selectAll: function () {
         var lines = this.editor.layoutManager.textStorage.lines;
         var lastRow = lines.length - 1;
         this.setSelection({
@@ -998,28 +998,28 @@ util.mixin(exports.TextView.prototype, {
         });
     },
 
-    selectDown: function() {
+    selectDown: function () {
         this._performVerticalKeyboardSelection(1);
     },
 
-    selectLeft: function() {
+    selectLeft: function () {
         this.moveCursorTo((this.editor.layoutManager.textStorage.
             displacePosition(this.editor.buffer._selectedRange.end, -1)), true);
     },
 
-    selectRight: function() {
+    selectRight: function () {
         this.moveCursorTo((this.editor.layoutManager.textStorage.
             displacePosition(this.editor.buffer._selectedRange.end, 1)), true);
     },
 
-    selectUp: function() {
+    selectUp: function () {
         this._performVerticalKeyboardSelection(-1);
     },
 
     /**
      * Directly replaces the current selection with a new one.
      */
-    setSelection: function(newRange, ensureVisible) {
+    setSelection: function (newRange, ensureVisible) {
         var textStorage = this.editor.layoutManager.textStorage;
 
         newRange = textStorage.clampRange(newRange);
@@ -1045,7 +1045,7 @@ util.mixin(exports.TextView.prototype, {
         this.selectionChanged(this.editor.buffer._selectedRange);
     },
 
-    textInserted: function(text) {
+    textInserted: function (text) {
         // We don't handle the new line char at this point.
         if (text === '\n') {
             return;
@@ -1060,11 +1060,11 @@ util.mixin(exports.TextView.prototype, {
 
 Object.defineProperties(exports.TextView.prototype, {
     hasFocus: {
-        get: function() {
+        get: function () {
             return this._hasFocus;
         },
 
-        set: function(value) {
+        set: function (value) {
             if (value == this._hasFocus) {
                 return;
             }

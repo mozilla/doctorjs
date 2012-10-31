@@ -23,11 +23,11 @@
     with this program; if not, write to the Free Software Foundation, Inc.,
     51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
  */
-(function($) {
-    $.fn.spinner = function(options) {
+(function ($) {
+    $.fn.spinner = function (options) {
         var opts = $.extend({}, $.fn.spinner.defaults, options);
 
-        return this.each(function() {
+        return this.each(function () {
             var l=0, t=0, w=0, h=0, shim=0, $s;
             var $this = $(this);
             
@@ -85,7 +85,7 @@
         , width     : 16            // width of spinner img
         , zIndex    : 1001          // z-index of spinner
         , hide      : false         // whether to hide the elem
-        , onStart   : function(){ } // start callback
-        , onFinish  : function(){ } // end callback
+        , onStart   : function (){ } // start callback
+        , onFinish  : function (){ } // end callback
     };
 })(jQuery);

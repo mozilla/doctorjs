@@ -4,6 +4,6 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-fannkuch	check-access-fannkuch.js	/^function fannkuch(n) {$/;"	f	lineno:5	type:number function(number)
+fannkuch	check-access-fannkuch.js	/^function fannkuch(n) {$/;"	f	lineno:5	type:number function (number)
 n	check-access-fannkuch.js	/^var n = 8;$/;"	v	lineno:64	type:number
 ret	check-access-fannkuch.js	/^var ret = fannkuch(n);$/;"	v	lineno:65	type:number

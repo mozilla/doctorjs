@@ -45,7 +45,7 @@ For more information visit http://www.sproutcore.com/tiki
   regular tiki package as well, which will replace this loader as soon as it
   is fetched.
 */
-if ("undefined" === typeof tiki) { var tiki = function() {
+if ("undefined" === typeof tiki) { var tiki = function () {
   
   var T_UNDEFINED = 'undefined',
       queue = [];
@@ -65,7 +65,7 @@ if ("undefined" === typeof tiki) { var tiki = function() {
     queue: queue, 
     
     // helpers just record into queue
-    register: function(packageId, opts) { 
+    register: function (packageId, opts) { 
       
       // this hack will make unit tests work for tiki by adding core_test to
       // the list of dependencies.
@@ -81,25 +81,25 @@ if ("undefined" === typeof tiki) { var tiki = function() {
     },
     
     // Keep these around just in case we need them in the end...
-    // script:   function() { 
+    // script:   function () { 
     //   _record('script', arguments); 
     //   return this; 
     // },
     // 
-    // stylesheet: function() { 
+    // stylesheet: function () { 
     //   _record('stylesheet', arguments); 
     //   return this; 
     // },
 
     // modules actually get saved as well a recorded so you can use them.
-    module: function(moduleId, factory) {
+    module: function (moduleId, factory) {
       if (moduleId.match(/\:tiki$/)) this.tikiFactory = factory;
       _record('module', arguments);
       return this ;
     },
 
     // load the tikiFactory 
-    start: function() {
+    start: function () {
       var exp = {}, ret;
       this.tikiFactory(null, exp, null); // no require or module!
       ret = exp.Browser.start(this.ENV, this.ARGS, queue);
@@ -123,7 +123,7 @@ tiki.register('::tiki/1.0.0', {
   "version": "1.0.0",
 });
 
-tiki.module('::tiki/1.0.0:tiki', function(require, exports, module) {
+tiki.module('::tiki/1.0.0:tiki', function (require, exports, module) {
 // ==========================================================================
 // Project:   Tiki - CommonJS Runtime
 // Copyright: ©2009-2010 Apple Inc. All rights reserved.
@@ -156,15 +156,15 @@ var T_FUNCTION = 'function',
     
     
 var IS_CANONICAL = /^::/; // must begin with ::
-var isCanonicalId = function(id) {
+var isCanonicalId = function (id) {
   return !!IS_CANONICAL.exec(id);
 };  
 
-var DEBUG = function() {
+var DEBUG = function () {
   exports.debug.apply(this, arguments);
 };
 
-exports.debug = function() {
+exports.debug = function () {
   var msg = Array.prototype.join.call(arguments, '');
   require('util').debug(msg);
 };
@@ -183,7 +183,7 @@ var isArray;
 if (Array.isArray) {
   isArray = Array.isArray;
 } else {
-  isArray = function(obj) {
+  isArray = function (obj) {
     if ('object' !== typeof obj) return false;
     if (obj instanceof Array) return true;
     return obj.constructor && (obj.constructor.name==='Array');
@@ -198,9 +198,9 @@ var createObject;
 if (Object.create) {
   createObject = Object.create;
 } else {
-  var K = function() {},
+  var K = function () {},
       Kproto = K.prototype;
-  createObject = function(obj) {
+  createObject = function (obj) {
     if (!obj) obj = Object.prototype;
     K.prototype = obj;
     
@@ -216,14 +216,14 @@ exports.createObject = createObject;
 var _constructor, _extend, extend;
 
 // returns a new constructor function with clean closure...
-_constructor = function() {
-  return function() {
+_constructor = function () {
+  return function () {
     if (this.init) return this.init.apply(this, arguments);
     else return this;
   };
 };
 
-_extend = function() {
+_extend = function () {
   return extend(this);
 };
 
@@ -234,7 +234,7 @@ _extend = function() {
   If you don't pass an initial constructor, this will create a new based 
   object.
 */
-extend = function(Constructor) {
+extend = function (Constructor) {
   var Ret = _constructor();
   Ret.prototype = createObject(Constructor.prototype);
   Ret.prototype.constructor = Ret;
@@ -250,10 +250,10 @@ exports.extend = extend;
   
   # Example
   
-      parallel([1,2,3], function(item, done) {
+      parallel([1,2,3], function (item, done) {
         // do something with item
         done();
-      })(function(err) {
+      })(function (err) {
         // invoked when done, err if there was an error
       });
       
@@ -265,10 +265,10 @@ exports.extend = extend;
     
   @returns {void}
 */
-var parallel = function(array, fn) {
+var parallel = function (array, fn) {
   if (fn && !fn.displayName) fn.displayName = 'parallel#fn';
   
-  return function(done) {
+  return function (done) {
     if (array.length === 0) return done(null, []);
     
     var len = array.length,
@@ -276,7 +276,7 @@ var parallel = function(array, fn) {
         cancelled = false,
         idx;
 
-    var tail = function(err) {
+    var tail = function (err) {
       if (cancelled) return; // nothing to do
 
       if (err) {
@@ -300,12 +300,12 @@ parallel.displayName = 'parallel';
 */
 var map;
 if (Array.prototype.map) {
-  map = function(array, fn) {
+  map = function (array, fn) {
     return array.map(fn);
   };
 
 } else {
-  map = function(array, fn) {
+  map = function (array, fn) {
     var idx, len = array.length, ret = [];
     for(idx=0;idx<len;idx++) {
       ret[idx] = fn(array[idx], idx);
@@ -333,11 +333,11 @@ var PENDING = 'pending',
     // load a file only once
     var loadit = Co.once(Co.fs.loadFile(pathToFile));
 
-    loadit(function(content) { 
+    loadit(function (content) { 
       // loads the file
     });
     
-    loadit(function(content) {
+    loadit(function (content) {
       // if already loaded, just invokes with past content
     });
     
@@ -350,13 +350,13 @@ var PENDING = 'pending',
     A new continuable that will only execute once then returns the cached
     result.
 */
-var once = function(action, context) {
+var once = function (action, context) {
   var state = PENDING,
       queue = [],
       makePending = false,
       args  = null;
 
-  var ret = function(callback) {
+  var ret = function (callback) {
     if (!context) context = this;
     
     // cont has already finished, just invoke callback based on result
@@ -377,7 +377,7 @@ var once = function(action, context) {
         queue.push(callback);
         state = RUNNING;
 
-        action.call(context, function(err) {
+        action.call(context, function (err) {
           args  = Array.prototype.slice.call(arguments);
           
           var oldQueue = queue, oldArgs = args;
@@ -394,7 +394,7 @@ var once = function(action, context) {
           }
           
           if (oldQueue) {
-            oldQueue.forEach(function(q) { q.apply(null, oldArgs); });
+            oldQueue.forEach(function (q) { q.apply(null, oldArgs); });
           }
         });
         break;
@@ -404,7 +404,7 @@ var once = function(action, context) {
   ret.displayName = 'once#handler';
 
   // allow the action to be reset so it is called again
-  ret.reset = function() {
+  ret.reset = function () {
     switch(state) {
       
       // already run, need to reset
@@ -433,7 +433,7 @@ exports.once = once;
   Iterate over a property, setting display names on functions as needed.
   Call this on your own exports to setup display names for debugging.
 */
-var displayNames = function(obj, root) {
+var displayNames = function (obj, root) {
   var k,v;
   for(k in obj) {
     if (!obj.hasOwnProperty(k)) continue ;
@@ -454,7 +454,7 @@ var displayNames = function(obj, root) {
 // 
 
 var NotFound = extend(Error);
-NotFound.prototype.init = function(canonicalId, pkgId) {
+NotFound.prototype.init = function (canonicalId, pkgId) {
   var msg = canonicalId+' not found';
   if (pkgId) {
     if (T_STRING === typeof pkgId) msg = msg+' '+pkgId;
@@ -466,7 +466,7 @@ NotFound.prototype.init = function(canonicalId, pkgId) {
 exports.NotFound = NotFound;
 
 var InvalidPackageDef = extend(Error);
-InvalidPackageDef.prototype.init = function(def, reason) {
+InvalidPackageDef.prototype.init = function (def, reason) {
   if ('undefined' !== typeof JSON) def = JSON.stringify(def);
   this.message = "Invalid package definition. "+reason+" "+def;
 };
@@ -510,19 +510,19 @@ appreciated but is not required.
 misrepresented as being the original software.
 3. This notice may not be removed or altered from any source distribution.
 */
-var natcompare = function() {
+var natcompare = function () {
   
-  var isWhitespaceChar = function(a) {
+  var isWhitespaceChar = function (a) {
     var charCode = a.charCodeAt(0);
     return charCode <= 32;
   };
 
-  var isDigitChar = function(a) {
+  var isDigitChar = function (a) {
     var charCode = a.charCodeAt(0);
     return ( charCode >= 48  && charCode <= 57 );
   };
 
-  var compareRight = function(a,b) {
+  var compareRight = function (a,b) {
     var bias = 0,
         ia   = 0,
         ib   = 0,
@@ -545,7 +545,7 @@ var natcompare = function() {
     }
   };
 
-  var natcompare = function(a,b) {
+  var natcompare = function (a,b) {
 
     var ia  = 0, 
     ib  = 0,
@@ -600,12 +600,12 @@ exports.natcompare = natcompare;
 // 
 
 // Support Methods
-var invalidVers = function(vers) {
+var invalidVers = function (vers) {
   return new Error('' + vers + ' is an invalid version string');
 };
 invalidVers.displayName = 'invalidVers';
 
-var compareNum = function(vers1, vers2, num1, num2) {
+var compareNum = function (vers1, vers2, num1, num2) {
   num1 = Number(num1);
   num2 = Number(num2);
   if (isNaN(num1)) throw invalidVers(vers1);
@@ -621,7 +621,7 @@ var semver = {
   /**
     Parse the version number into its components.  Returns result of a regex.
   */
-  parse: function(vers) {
+  parse: function (vers) {
     var ret = vers.match(/^(=|~)?([\d]+?)(\.([\d]+?)(\.(.+))?)?$/);
     if (!ret) return null; // no match
     return [ret, ret[2], ret[4] || '0', ret[6] || '0', ret[1]];
@@ -636,7 +636,7 @@ var semver = {
 
     @returns {Number} version number or null if could not be parsed
   */
-  major: function(vers) {
+  major: function (vers) {
     return Number(vparse(vers)[1]);
   },
 
@@ -649,7 +649,7 @@ var semver = {
 
     @returns {Number} version number or null if could not be parsed
   */
-  minor: function(vers) {
+  minor: function (vers) {
     return Number(vparse(vers)[2]);
   },
 
@@ -657,7 +657,7 @@ var semver = {
     Returns the patch of a version string.  The patch value is always a string
     not a number
   */
-  patch: function(vers) {
+  patch: function (vers) {
     var ret = vparse(vers)[3];
     return isNaN(Number(ret)) ? ret : Number(ret);
   },
@@ -668,7 +668,7 @@ var semver = {
   /**
     Returns the comparison mode.  Will be one of NORMAL or STRICT
   */
-  mode: function(vers) {
+  mode: function (vers) {
     var ret = vparse(vers)[4];
     return ret === '=' ? semver.STRICT : semver.NORMAL;
   },
@@ -681,7 +681,7 @@ var semver = {
     @param {String} patch2 second patch to compare
     @returns {Number} -1 if patch1 < patch2, 1 if patch1 > patch2, 0 if equal 
   */
-  comparePatch: function(patch1, patch2) {
+  comparePatch: function (patch1, patch2) {
     var num1, num2;
 
     if (patch1 === patch2) return 0; // equal
@@ -707,7 +707,7 @@ var semver = {
   /**
     Compares two version strings, using natural sorting for the patch.
   */
-  compare: function(vers1, vers2) {
+  compare: function (vers1, vers2) {
     var ret ;
 
     if (vers1 === vers2) return 0;
@@ -734,7 +734,7 @@ var semver = {
     greater than or equal to the first version but its major version must not 
     be different.
   */
-  compatible: function(reqVers, curVers) {
+  compatible: function (reqVers, curVers) {
     if (!reqVers) return true; // always compatible with no version
     if (reqVers === curVers) return true; // fast path
 
@@ -763,7 +763,7 @@ var semver = {
     Normalizes version numbers so that semantically equivalent will be treated 
     the same.
   */
-  normalize: function(vers) {
+  normalize: function (vers) {
     var patch;
 
     if (!vers || vers.length===0) return null;
@@ -799,7 +799,7 @@ vparse = semver.parse;
 var Factory = exports.extend(Object);
 exports.Factory = Factory;
 
-Factory.prototype.init = function(moduleId, pkg, factory) {
+Factory.prototype.init = function (moduleId, pkg, factory) {
   this.id  = moduleId;
   this.pkg = pkg;
   this.factory = factory;
@@ -820,7 +820,7 @@ Factory.prototype.init = function(moduleId, pkg, factory) {
     
   @returns {Hash} exports from instantiated module
 */
-Factory.prototype.call = function(sandbox, module) {
+Factory.prototype.call = function (sandbox, module) {
 
   // get the factory function, evaluate if needed
   var func = this.factory,
@@ -841,7 +841,7 @@ Factory.prototype.call = function(sandbox, module) {
 
 // standard wrapper around a module.  replace item[1] with a string and join.
 var MODULE_WRAPPER = [
-  '(function(require, exports, module) {',
+  '(function (require, exports, module) {',
   null,
   '\n});\n//@ sourceURL=',
   null,
@@ -858,7 +858,7 @@ var MODULE_WRAPPER = [
     
   @returns {Function} compiled factory
 */
-Factory.compile = function(moduleText, moduleId) {
+Factory.compile = function (moduleText, moduleId) {
   var ret;
   
   MODULE_WRAPPER[1] = moduleText;
@@ -886,7 +886,7 @@ exports.Factory = Factory;
 var Module = exports.extend(Object);
 exports.Module = Module;
 
-Module.prototype.init = function(id, ownerPackage, sandbox) {
+Module.prototype.init = function (id, ownerPackage, sandbox) {
   this.id           = id;
   this.ownerPackage = ownerPackage;
   this.exports      = {};
@@ -909,7 +909,7 @@ Module.prototype.init = function(id, ownerPackage, sandbox) {
       
     @returns {String} url or path if not called async
   */
-  this.resource = function(id) {
+  this.resource = function (id) {
     return sandbox.resource(id, module.id, ownerPackage);
   };
 };
@@ -975,7 +975,7 @@ Module.prototype.init = function(id, ownerPackage, sandbox) {
 var Package = exports.extend(Object);
 exports.Package = Package;
 
-Package.prototype.init = function(id, config) {
+Package.prototype.init = function (id, config) {
   if (!isCanonicalId(id)) id = '::'+id; // normalize
   this.id = id;
   this.config = config;
@@ -995,7 +995,7 @@ Package.prototype.init = function(id, config) {
     
   @returns {Object} the key value or undefined
 */
-Package.prototype.get = function(key) {
+Package.prototype.get = function (key) {
   return this.config ? this.config[key] : undefined;
 };
 
@@ -1010,7 +1010,7 @@ Package.prototype.get = function(key) {
     
   @returns {Package} receiver
 */
-Package.prototype.set = function(key, value) {
+Package.prototype.set = function (key, value) {
   if (!this.config) this.config = {};
   this.config[key] = value;
   return this;
@@ -1025,7 +1025,7 @@ Package.prototype.set = function(key, value) {
     
   @returns {String} The required version or null (meaning any)
 */
-Package.prototype.requiredVersion = function(packageId) { 
+Package.prototype.requiredVersion = function (packageId) { 
   var deps = this.get('dependencies');
   return deps ? deps[packageId] : null;
 };
@@ -1055,7 +1055,7 @@ Package.prototype.requiredVersion = function(packageId) {
     
   @param {String} Canonical packageId or null
 */
-Package.prototype.canonicalPackageId = function(packageId, vers) {
+Package.prototype.canonicalPackageId = function (packageId, vers) {
   if ((packageId === this.get('name')) && 
       semver.compatible(vers, this.get('version'))) {
       return this.id;
@@ -1076,7 +1076,7 @@ Package.prototype.canonicalPackageId = function(packageId, vers) {
     
   @returns {Package} a package instance or null
 */
-Package.prototype.packageFor = function(canonicalId) {
+Package.prototype.packageFor = function (canonicalId) {
   if (canonicalId === this.id) return this;
   return null;
 };
@@ -1101,7 +1101,7 @@ Package.prototype.packageFor = function(canonicalId) {
     
   @returns {void}
 */
-Package.prototype.ensurePackage = function(canonicalId, done) {
+Package.prototype.ensurePackage = function (canonicalId, done) {
   if (canonicalId === this.id) return done();
   else return done(new NotFound(canonicalId, this));
 };
@@ -1110,7 +1110,7 @@ Package.prototype.ensurePackage = function(canonicalId, done) {
   Returns all packages in the package including the package itself and any 
   nested packages.  Default just returns self.
 */
-Package.prototype.catalogPackages = function() {
+Package.prototype.catalogPackages = function () {
   return [this];
 };
 
@@ -1126,7 +1126,7 @@ Package.prototype.catalogPackages = function() {
     
   @returns {Boolean} true if the module exists
 */
-Package.prototype.exists = function(moduleId) {
+Package.prototype.exists = function (moduleId) {
   return !!(this.factories && this.factories[moduleId]);
 };
 
@@ -1139,7 +1139,7 @@ Package.prototype.exists = function(moduleId) {
     
   @returns {Factory} factory object
 */
-Package.prototype.load = function(moduleId) {
+Package.prototype.load = function (moduleId) {
   return this.factories ? this.factories[moduleId] : null;
 };
 
@@ -1161,7 +1161,7 @@ var joinPackageId = function joinPackageId(packageId, moduleId) {
 var Loader = exports.extend(Object);
 exports.Loader = Loader;
 
-Loader.prototype.init = function(sources) {
+Loader.prototype.init = function (sources) {
   this.sources = sources || [];
   this.clear();
 };
@@ -1170,7 +1170,7 @@ Loader.prototype.init = function(sources) {
   Clear caches in the loader causing future requests to go back to the 
   sources.
 */
-Loader.prototype.clear = function() {
+Loader.prototype.clear = function () {
   this.factories = {};
   this.canonicalIds = {};
   this.packages ={};
@@ -1241,7 +1241,7 @@ Loader.prototype.anonymousPackage = new Package('(anonymous)', {
     
   @returns {void}
 */
-Loader.prototype.canonical = function(moduleId, curModuleId, workingPackage) {
+Loader.prototype.canonical = function (moduleId, curModuleId, workingPackage) {
   
   var cache, cacheId, idx, packageId, canonicalId, pkg, ret; 
   
@@ -1344,7 +1344,7 @@ Loader.prototype.canonical = function(moduleId, curModuleId, workingPackage) {
   @returns {void}
   
 */
-Loader.prototype.load = function(canonicalId, workingPackage, sandbox) {
+Loader.prototype.load = function (canonicalId, workingPackage, sandbox) {
 
   var cache, ret, idx, packageId, moduleId, pkg;
   
@@ -1376,7 +1376,7 @@ Loader.prototype.load = function(canonicalId, workingPackage, sandbox) {
   Returns a catalog of all known packages visible to the workingPackage.
   The catalog is simply an array of package objects in no particular order
 */
-Loader.prototype.catalogPackages = function(workingPackage) {
+Loader.prototype.catalogPackages = function (workingPackage) {
   if (!workingPackage) workingPackage = this.anonymousPackage;
   var catalog = [], sources, idx, len, seen = {};
   if (this.defaultPackage) catalog.push(this.defaultPackage);
@@ -1385,7 +1385,7 @@ Loader.prototype.catalogPackages = function(workingPackage) {
   //if (this.anonymousPackage) ret.push(this.anonymousPackage);
 
   // append any packages with versions that haven't been seen already
-  var append = function(packages) {
+  var append = function (packages) {
     var idx, len, check, cur;
     
     if (!packages) return; // nothing to do
@@ -1428,21 +1428,21 @@ Loader.prototype.catalogPackages = function(workingPackage) {
   
   Find a compatible package named 'foo' in the current owner module:
   
-      loader.canonicalPackage('foo', ownerPackage, function(err, pkg) {
+      loader.canonicalPackage('foo', ownerPackage, function (err, pkg) {
         // process response
       });
       
   Find the package named 'foo', exactly version '1.0.0'.  This may return a
   packes nested in the ownerPackage:
   
-      loader.canonicalPackage('foo', '=1.0.0', ownerPackage, function(err, pkg) {
+      loader.canonicalPackage('foo', '=1.0.0', ownerPackage, function (err, pkg) {
         // process response
       });
   
   Find the latest version of 'foo' installed in the system - not specific to 
   any particular package
   
-      loader.canonicalPackage('foo', loader.anonymousPackage, function(err, pkg) {
+      loader.canonicalPackage('foo', loader.anonymousPackage, function (err, pkg) {
         // process result
       });
       
@@ -1468,7 +1468,7 @@ Loader.prototype.catalogPackages = function(workingPackage) {
 
   @returns {void}
 */
-Loader.prototype.canonicalPackageId = function(packageId, vers, workingPackage) {
+Loader.prototype.canonicalPackageId = function (packageId, vers, workingPackage) {
 
   var idx;
 
@@ -1520,7 +1520,7 @@ Loader.prototype.canonicalPackageId = function(packageId, vers, workingPackage) 
 
   @returns {void}
 */
-Loader.prototype.packageFor = function(canonicalId, workingPackage){
+Loader.prototype.packageFor = function (canonicalId, workingPackage){
 
   if (!workingPackage) workingPackage = this.anonymousPackage;
   
@@ -1543,7 +1543,7 @@ Loader.prototype.packageFor = function(canonicalId, workingPackage){
     
   @param 
 */
-Loader.prototype.ready = function(canonicalId, workingPackage) {
+Loader.prototype.ready = function (canonicalId, workingPackage) {
 
   if (!workingPackage) workingPackage = this.anonymousPackage;
   
@@ -1591,7 +1591,7 @@ Loader.prototype.ready = function(canonicalId, workingPackage) {
     
   @returns {void}
 */
-Loader.prototype.ensurePackage = function(packageId, vers, workingPackage, done) {
+Loader.prototype.ensurePackage = function (packageId, vers, workingPackage, done) {
 
   // normalize params
   if (vers && (T_STRING !== typeof vers)) {
@@ -1616,7 +1616,7 @@ Loader.prototype.ensurePackage = function(packageId, vers, workingPackage, done)
   Primitive for ensurePackage().  Does no param normalization.  Called 
   recursively for dependencies.
 */
-Loader.prototype._ensurePackage = function(packageId, vers, workingPackage, seen, done) {
+Loader.prototype._ensurePackage = function (packageId, vers, workingPackage, seen, done) {
 
   var loader = this, canonicalId, source;
   
@@ -1634,7 +1634,7 @@ Loader.prototype._ensurePackage = function(packageId, vers, workingPackage, seen
     return done(new NotFound(canonicalId, workingPackage));
   }
 
-  source.ensurePackage(canonicalId, function(err) {
+  source.ensurePackage(canonicalId, function (err) {
     var pkg, deps, packageId, packageIds;
 
     if (err) return done(err);
@@ -1653,7 +1653,7 @@ Loader.prototype._ensurePackage = function(packageId, vers, workingPackage, seen
       packageIds.push({ packageId: packageId, vers: deps[packageId] });
     }
     
-    parallel(packageIds, function(info, done) {
+    parallel(packageIds, function (info, done) {
       loader._ensurePackage(info.packageId, info.vers, pkg, seen, done);
     })(done);
 
@@ -1689,7 +1689,7 @@ Loader.prototype._ensurePackage = function(packageId, vers, workingPackage, seen
     
   @returns {String}
 */
-Loader.prototype._canonicalPackageId = function(packageId, vers, workingPackage) {
+Loader.prototype._canonicalPackageId = function (packageId, vers, workingPackage) {
 
   // fast paths
   if (packageId instanceof Package) return packageId.id;
@@ -1754,7 +1754,7 @@ Loader.prototype._canonicalPackageId = function(packageId, vers, workingPackage)
 };
 
 // add a function to the cache that will immediately return the source
-Loader.prototype._cachePackageSource = function(id, workingPackage, source) {
+Loader.prototype._cachePackageSource = function (id, workingPackage, source) {
   var scache = this.packageSources, pkgId = workingPackage.id;
   
   if (!scache) scache = this.packageSources = {};
@@ -1767,7 +1767,7 @@ Loader.prototype._cachePackageSource = function(id, workingPackage, source) {
   Looks up the source for the named canonicalId in the cache.  Returns null
   if no match is found.
 */
-Loader.prototype._sourceForCanonicalPackageId = function(canonicalId, workingPackage) {
+Loader.prototype._sourceForCanonicalPackageId = function (canonicalId, workingPackage) {
   var scache = this.packageSources, 
       wpackageId = workingPackage.id, 
       pkg, sources, len, idx, ret;
@@ -1803,7 +1803,7 @@ Loader.prototype._sourceForCanonicalPackageId = function(canonicalId, workingPac
   Primitive actually loads a package from a canonicalId.  Throws an exception
   if source for package is not already in cache.  Also caches loaded package.
 */
-Loader.prototype._packageFor = function(canonicalId, workingPackage) {
+Loader.prototype._packageFor = function (canonicalId, workingPackage) {
   var cache, source, ret;
 
   // special case - if default packageId just get the default package.
@@ -1826,7 +1826,7 @@ Loader.prototype._packageFor = function(canonicalId, workingPackage) {
   Primitive simply checks to see if the named canonicalId is ready or not
   along with any dependencies
 */
-Loader.prototype._packageReady = function(canonicalId, workingPackage, seen) {
+Loader.prototype._packageReady = function (canonicalId, workingPackage, seen) {
   var cache = this.packages, pkg, deps, packageId, vers;
 
   // if we've already seen this package, exit immediately
@@ -1871,7 +1871,7 @@ Loader.prototype._packageReady = function(canonicalId, workingPackage, seen) {
   @param {String} baseId fully qualified base id
   @returns {String} fully qualified name
 */
-Loader.prototype._resolve = function(moduleId, curModuleId, pkg){
+Loader.prototype._resolve = function (moduleId, curModuleId, pkg){
   var path, len, idx, part, parts, packageId, err;
 
   // if id does not contain a packageId and it starts with a / then 
@@ -1949,7 +1949,7 @@ Loader.prototype._resolve = function(moduleId, curModuleId, pkg){
 var Sandbox = exports.extend(Object);
 exports.Sandbox = Sandbox;
 
-Sandbox.prototype.init = function(loader, env, args, mainModuleId) {
+Sandbox.prototype.init = function (loader, env, args, mainModuleId) {
   this.loader = loader;
   this.env    = env;
   this.args   = args;
@@ -1958,11 +1958,11 @@ Sandbox.prototype.init = function(loader, env, args, mainModuleId) {
   this.clear();
 };
 
-Sandbox.prototype.catalogPackages = function(workingPackage) {
+Sandbox.prototype.catalogPackages = function (workingPackage) {
   return this.loader.catalogPackages(workingPackage);
 };
 
-Sandbox.prototype.createRequire = function(module) {
+Sandbox.prototype.createRequire = function (module) {
   
   var sandbox = this,
       curId   = module.id,
@@ -1970,7 +1970,7 @@ Sandbox.prototype.createRequire = function(module) {
       reqd;
       
   // basic synchronous require
-  var req = function(moduleId, packageId) {
+  var req = function (moduleId, packageId) {
     if (packageId && moduleId.indexOf(':')<0) {
       if (packageId.isPackage) packageId = packageId.id;
       moduleId = packageId+':'+moduleId;
@@ -1983,7 +1983,7 @@ Sandbox.prototype.createRequire = function(module) {
   req.nativeRequire = sandbox.nativeRequire;
   
   // async version - packageId is optional
-  req.ensure = function(moduleIds, done) {
+  req.ensure = function (moduleIds, done) {
     // always normalize moduleId to an array
     if (!isArray(moduleIds)) {
       moduleIds = Array.prototype.slice.call(arguments);
@@ -1991,14 +1991,14 @@ Sandbox.prototype.createRequire = function(module) {
     }
 
     // ensure each module is loaded 
-    parallel(moduleIds, function(moduleId, done) {
+    parallel(moduleIds, function (moduleId, done) {
       sandbox.ensure(moduleId, curId, curPkg, done);
 
-    })(function(err) { 
+    })(function (err) { 
       if (err) return done(err);
       if (done.length<=1) return done(); // don't lookup modules themselves
       
-      done(null, map(moduleIds, function(moduleId) {
+      done(null, map(moduleIds, function (moduleId) {
         return sandbox.require(moduleId, curId, curPkg);
       }));
     });
@@ -2008,7 +2008,7 @@ Sandbox.prototype.createRequire = function(module) {
   // return true if the passed module or modules are ready for use right now
   // this is like calling ensure() but it won't load anything that isn't 
   // actually ready
-  req.ready = function(moduleIds) {
+  req.ready = function (moduleIds) {
     var idx, len ;
     
     // always normalize moduleId to an array
@@ -2042,7 +2042,7 @@ Sandbox.prototype.createRequire = function(module) {
       
     @returns {Package} the package or null
   */
-  req.packageFor = function(packageId, vers) {
+  req.packageFor = function (packageId, vers) {
     return sandbox.packageFor(packageId, vers, curPkg);
   };
   req.packageFor.displayName = reqd+'.packageFor';
@@ -2071,8 +2071,8 @@ Sandbox.prototype.createRequire = function(module) {
     
     @returns {Package} the package or null
   */
-  req.ensurePackage = function(packageId, vers, done) {
-    sandbox.ensurePackage(packageId, vers, curPkg, function(err) {
+  req.ensurePackage = function (packageId, vers, done) {
+    sandbox.ensurePackage(packageId, vers, curPkg, function (err) {
       if (err) return done(err);
       if (done.length <= 1) return done();
       done(null, sandbox.packageFor(packageId, vers, curPkg));
@@ -2085,7 +2085,7 @@ Sandbox.prototype.createRequire = function(module) {
     any additional loading.  This may be an expensive operation; you should
     only use it when necessary to detect plugins, etc.
   */
-  req.catalogPackages = function() {
+  req.catalogPackages = function () {
     return sandbox.catalogPackages(curPkg);
   };
   
@@ -2126,7 +2126,7 @@ Sandbox.prototype.Module = Module;
     
   @returns {void}
 */
-Sandbox.prototype.module = function(moduleId, curModuleId, workingPackage) {
+Sandbox.prototype.module = function (moduleId, curModuleId, workingPackage) {
 
   var ret, canonicalId, cache, packageId, idx, pkg;
   
@@ -2158,7 +2158,7 @@ Sandbox.prototype.module = function(moduleId, curModuleId, workingPackage) {
   Note that the mainModule will be resolved using the anonymousPackage so
   the named module must be visible from there.
 */
-Sandbox.prototype.main = function(newMainModuleId, workingPackage) {
+Sandbox.prototype.main = function (newMainModuleId, workingPackage) {
   if (newMainModuleId !== undefined) {
     this._mainModule = null;
     this._mainModuleId = newMainModuleId;
@@ -2191,7 +2191,7 @@ Sandbox.prototype.main = function(newMainModuleId, workingPackage) {
   
   @returns {void}
 */
-Sandbox.prototype.require = function(moduleId, curModuleId, workingPackage) {
+Sandbox.prototype.require = function (moduleId, curModuleId, workingPackage) {
 
   var ret, canonicalId, cache, used, factory, module, exp;
   
@@ -2231,7 +2231,7 @@ Sandbox.prototype.require = function(moduleId, curModuleId, workingPackage) {
   Returns true if the given module is ready. This checks the local cache 
   first then hands this off to the loader.
 */
-Sandbox.prototype.ready = function(moduleId, curModuleId, workingPackage) {
+Sandbox.prototype.ready = function (moduleId, curModuleId, workingPackage) {
   // assume canonicalPackageId() will normalize params
   var id = this.loader.canonical(moduleId, curModuleId, workingPackage);
   return id ? this.loader.ready(id) : false;
@@ -2246,7 +2246,7 @@ Sandbox.prototype.ready = function(moduleId, curModuleId, workingPackage) {
   require.ensure() method defined on a module's local require() method.
   
 */
-Sandbox.prototype.ensure = function(moduleId, curModuleId, workingPackage, done) {
+Sandbox.prototype.ensure = function (moduleId, curModuleId, workingPackage, done) {
 
   var id, loader, packageId, idx;
   
@@ -2270,7 +2270,7 @@ Sandbox.prototype.ensure = function(moduleId, curModuleId, workingPackage, done)
   packageId = id.slice(0, idx);
   loader    = this.loader;
 
-  loader.ensurePackage(packageId, workingPackage, function(err) {
+  loader.ensurePackage(packageId, workingPackage, function (err) {
     if (err) return done(err);
     var pkg = loader.packageFor(packageId, workingPackage);
     if (!pkg.exists(moduleId)) done(new NotFound(moduleId, pkg));
@@ -2281,7 +2281,7 @@ Sandbox.prototype.ensure = function(moduleId, curModuleId, workingPackage, done)
 /**
   TODO: document
 */
-Sandbox.prototype.packageFor = function(packageId, vers, workingPackage) {
+Sandbox.prototype.packageFor = function (packageId, vers, workingPackage) {
 
   // assume canonicalPackageId() will normalize params
   var id = this.loader.canonicalPackageId(packageId, vers, workingPackage);
@@ -2292,7 +2292,7 @@ Sandbox.prototype.packageFor = function(packageId, vers, workingPackage) {
 /** 
   TODO: document
 */
-Sandbox.prototype.ensurePackage = function(packageId, vers, workingPackage, done) {
+Sandbox.prototype.ensurePackage = function (packageId, vers, workingPackage, done) {
 
   // normalize params so that done is in right place
   if (vers && (T_STRING !== typeof vers)) {
@@ -2315,7 +2315,7 @@ Sandbox.prototype.ensurePackage = function(packageId, vers, workingPackage, done
 /**
   Returns the path or URL to a resource in the named package. 
 */
-Sandbox.prototype.resource = function(resourceId, moduleId, ownerPackage) {
+Sandbox.prototype.resource = function (resourceId, moduleId, ownerPackage) {
   if (!ownerPackage.resource) return null;
   return ownerPackage.resource(resourceId, moduleId);
 };
@@ -2323,7 +2323,7 @@ Sandbox.prototype.resource = function(resourceId, moduleId, ownerPackage) {
 /**
   Clears the sandbox.  requiring modules will cause them to be reinstantied
 */
-Sandbox.prototype.clear = function() {
+Sandbox.prototype.clear = function () {
   this.exports = {};
   this.modules = {};
   this.usedExports = {};
@@ -2341,7 +2341,7 @@ Sandbox.prototype.clear = function() {
 var Browser = exports.extend(Object);
 exports.Browser = Browser;
 
-Browser.prototype.init = function() {
+Browser.prototype.init = function () {
   this._ready  = {};
   this._unload = {};
   
@@ -2353,7 +2353,7 @@ Browser.prototype.init = function() {
   to register themselves.  You should also clear the associated loader and
   sandbox if you use this.
 */
-Browser.prototype.clear = function() {
+Browser.prototype.clear = function () {
   this.packageInfoByName = {}; // stores package info sorted by name/version
   this.packageInfoById   = {}; // stores package info sorted by id
   this.packages    = {}; // instantiated packages
@@ -2370,7 +2370,7 @@ Browser.prototype.clear = function() {
   
   @returns {Browser} new instance
 */
-Browser.start = function(env, args, queue) {
+Browser.start = function (env, args, queue) {
   // build new chain of objects and setup require.
   var browser, len, idx, action;
   
@@ -2391,7 +2391,7 @@ Browser.start = function(env, args, queue) {
   return browser;
 };
 
-Browser.prototype.replay = function() {
+Browser.prototype.replay = function () {
   var queue = this.queue,
       len   = queue ? queue.length : 0,
       idx, action;
@@ -2406,7 +2406,7 @@ Browser.prototype.replay = function() {
 };
 
 // safe - in place of preamble start()
-Browser.prototype.start = function() {
+Browser.prototype.start = function () {
   return this;
 };
 
@@ -2414,9 +2414,9 @@ Browser.prototype.start = function() {
   Makes all dependencies of the passed canonical packageId global.  Used
   for backwards compatibility with non-CommonJS libraries.
 */
-Browser.prototype.global = function(canonicalId) {
+Browser.prototype.global = function (canonicalId) {
   if (!domAvailable && !xhrAvailable) return this;  // don't work out of brsr
-  var GLOBAL = (function() { return this; })();
+  var GLOBAL = (function () { return this; })();
   
   var globals, pkg, deps, packageId, exports, keys, key, idx, len;
   
@@ -2465,7 +2465,7 @@ Browser.prototype.global = function(canonicalId) {
 // Ready & Unload Handlers
 // 
 
-var buildInvocation = function(args) {
+var buildInvocation = function (args) {
   var context, method;
   
   if (args.length === 1) {
@@ -2481,7 +2481,7 @@ var buildInvocation = function(args) {
   return { target: context, method: method, args: args };
 };
 
-var queueListener = function(base, queueName, args) {
+var queueListener = function (base, queueName, args) {
   if (!base[queueName]) base[queueName] = [];
   base[queueName].push(buildInvocation(args));
 };
@@ -2491,7 +2491,7 @@ var queueListener = function(base, queueName, args) {
   either an object/function or a moduleId and property name plus additional
   arguments.
 */
-Browser.prototype.addReadyListener = function(context, method) {
+Browser.prototype.addReadyListener = function (context, method) {
   if (this._ready && this._ready.isReady) {
     this._invoke(buildInvocation(arguments));
   } else {
@@ -2505,7 +2505,7 @@ Browser.prototype.addReadyListener = function(context, method) {
   just before the main moduleId is required.  This is primarily provided as 
   a way for legacy environments to hook in their own main function.
 */
-Browser.prototype.addMainListener = function(context, method) {
+Browser.prototype.addMainListener = function (context, method) {
   if (this._ready && this._ready.isReady) {
     this._invoke(buildInvocation(arguments));
   } else {
@@ -2517,7 +2517,7 @@ Browser.prototype.addMainListener = function(context, method) {
 /**
   Invoke the passed callback when the browser is about to unload.
 */
-Browser.prototype.addUnloadListener = function(context, method) {
+Browser.prototype.addUnloadListener = function (context, method) {
   if (this._unload && this._unload.isUnloading) {
     this._invoke(buildInvocation(arguments));
   } else {
@@ -2527,7 +2527,7 @@ Browser.prototype.addUnloadListener = function(context, method) {
 };
 
 
-Browser.prototype._invoke = function(inv) {
+Browser.prototype._invoke = function (inv) {
   var target = inv.target, method = inv.method;
   if (T_STRING === typeof target) target = this.require(target);
   if (T_STRING === typeof method) method = target[method];
@@ -2535,13 +2535,13 @@ Browser.prototype._invoke = function(inv) {
   inv.target = inv.method = inv.args = null;
 };
 
-Browser.prototype._setupReadyListener = function() {
+Browser.prototype._setupReadyListener = function () {
   if (this._ready.setup) return this;
   this._ready.setup =true;
   
   var ready = this._ready, source = this, fire;
   
-  fire = function() {
+  fire = function () {
     if (ready.isReady) return;
     ready.isReady = true;
     
@@ -2575,7 +2575,7 @@ Browser.prototype._setupReadyListener = function() {
 
     // cleanup handler to be called whenever any registered listener fires
     // should prevent additional listeners from firing
-    ready.cleanup = function() {
+    ready.cleanup = function () {
       document.removeEventListener('DOMContentLoaded', fire, false);
       document.removeEventListener('load', fire, false);
     };
@@ -2588,7 +2588,7 @@ Browser.prototype._setupReadyListener = function() {
   } else if (document.attachEvent) {
 
     // cleanup handler - should cleanup all registered listeners
-    ready.cleanup = function() {
+    ready.cleanup = function () {
       document.detachEvent('onreadystatechange', fire);
       document.detachEvent('onload', fire);
       ready.ieHandler = null; // will stop the ieHandler from firing again
@@ -2602,7 +2602,7 @@ Browser.prototype._setupReadyListener = function() {
     // is ready
     // NOTE: DO NOT CHANGE TO ===, FAILS IN IE.
     if ( document.documentElement.doScroll && window == window.top ) {
-      ready.ieHandler = function() {
+      ready.ieHandler = function () {
 
         // If IE is used, use the trick by Diego Perini
         // http://javascript.nwbox.com/IEContentLoaded/
@@ -2625,14 +2625,14 @@ Browser.prototype._setupReadyListener = function() {
   }  
 };
 
-Browser._scheduleUnloadListener = function() {
+Browser._scheduleUnloadListener = function () {
   if (this._unload.setup) return this;
   this._unload.setup =true;
   
   var unload = this._unload, source = this, fire;
 
   unload.isUnloading = false;
-  fire = function() { 
+  fire = function () { 
     if (unload.isUnloading) return;
     unload.isUnloading = true;
     
@@ -2651,13 +2651,13 @@ Browser._scheduleUnloadListener = function() {
     // TODO: Handle server-side JS mode
     
   } else if (document.addEventListener) {
-    unload.cleanup = function() {
+    unload.cleanup = function () {
       document.removeEventListener('unload', fire);
     };
     document.addEventListener('unload', fire, false);
     
   } else if (document.attachEvent) {
-    unload.cleanup = function() {
+    unload.cleanup = function () {
       document.detachEvent('onunload', fire);
     };
     document.attachEvent('unload', fire);
@@ -2679,13 +2679,13 @@ Browser._scheduleUnloadListener = function() {
     
   @returns {void}
 */
-Browser.prototype.main = function(moduleId, method) {
+Browser.prototype.main = function (moduleId, method) {
   if (this.sandbox) this.sandbox.main(moduleId);
   this._setupReadyListener(); // make sure we listen for ready event
   this._main = { id: moduleId, method: method };
 };
 
-Browser.prototype._runMain = function() {
+Browser.prototype._runMain = function () {
   if (!this._main) return ;
   
   var moduleId = this._main.id,
@@ -2696,7 +2696,7 @@ Browser.prototype._runMain = function() {
   this._main = null;
 
   // async load any main module dependencies if needed then require
-  req.ensure(moduleId, function(err) {
+  req.ensure(moduleId, function (err) {
     if (err) throw err;
     var exp = req(moduleId);
     if (T_STRING === typeof method) method = exp[method];
@@ -2707,11 +2707,11 @@ Browser.prototype._runMain = function() {
 
 // creates a new action that will invoke the passed value then setup the
 // resolve() method to wait on response
-Browser.prototype._action  = function(action) {
+Browser.prototype._action  = function (action) {
   var ret;
   
-  ret = once(function(done) {
-    ret.resolve = function(err, val) {
+  ret = once(function (done) {
+    ret.resolve = function (err, val) {
       ret.resolve = null; // no more...
       done(err, val);
     };
@@ -2721,17 +2721,17 @@ Browser.prototype._action  = function(action) {
   
 };
 
-Browser.prototype._resolve = function(dict, key, value) {
+Browser.prototype._resolve = function (dict, key, value) {
   
   // for pushed content, just create the action function
-  if (!dict[key]) dict[key] = function(done) { done(null, value); };
+  if (!dict[key]) dict[key] = function (done) { done(null, value); };
   
   // if a value already exists, call resolve if still valid
   else if (dict[key].resolve) dict[key].resolve(null, value);
   return this;
 };
 
-Browser.prototype._fail = function(dict, key, err) {
+Browser.prototype._fail = function (dict, key, err) {
   if (dict[key].resolve) dict[key].resolve(err);
 };
 
@@ -2743,7 +2743,7 @@ var T_SCRIPT     = 'script',
   Normalizes package info, expanding some compacted items out to full 
   info needed.
 */
-Browser.prototype._normalize = function(def, packageId) {
+Browser.prototype._normalize = function (def, packageId) {
   if (!isCanonicalId(packageId)) packageId = '::'+packageId;
   def.id = packageId;
   def.version = semver.normalize(def.version);
@@ -2754,7 +2754,7 @@ Browser.prototype._normalize = function(def, packageId) {
   var base = def['tiki:base']; 
   if (def['tiki:resources']) {
 
-    def['tiki:resources'] = map(def['tiki:resources'], function(item) {
+    def['tiki:resources'] = map(def['tiki:resources'], function (item) {
       
       // expand a simple string into a default entry
       if (T_STRING === typeof item) {
@@ -2808,7 +2808,7 @@ Browser.prototype._normalize = function(def, packageId) {
 /**
   Register new package information.
 */
-Browser.prototype.register = function(packageId, def) {
+Browser.prototype.register = function (packageId, def) {
   var reg, replace, name, vers, idx = -1;
   
   // normalize some basics...
@@ -2854,7 +2854,7 @@ Browser.prototype.register = function(packageId, def) {
   Main registration API for all modules.  Simply registers a module for later
   use by a package.
 */
-Browser.prototype.module = function(key, def) {
+Browser.prototype.module = function (key, def) {
   if (!isCanonicalId(key)) key = '::'+key;
   this.factories[key] = def;
   return this; 
@@ -2863,7 +2863,7 @@ Browser.prototype.module = function(key, def) {
 /**
   Register a script that has loaded
 */
-Browser.prototype.script = function(scriptId) {
+Browser.prototype.script = function (scriptId) {
   if (!isCanonicalId(scriptId)) scriptId = '::'+scriptId;
   this._resolve(this.scriptActions, scriptId, true);
 };
@@ -2871,7 +2871,7 @@ Browser.prototype.script = function(scriptId) {
 /**
   Register a stylesheet that has loaded.
 */
-Browser.prototype.stylesheet = function(stylesheetId) {
+Browser.prototype.stylesheet = function (stylesheetId) {
   if (!isCanonicalId(stylesheetId)) stylesheetId = '::'+stylesheetId;
   this._resolve(this.stylesheetActions, stylesheetId, true);
 };
@@ -2899,7 +2899,7 @@ Browser.prototype.xhr = !domAvailable;
 */
 Browser.prototype.autowrap = false;
 
-var findPublicPackageInfo = function(infos) {
+var findPublicPackageInfo = function (infos) {
   if (!infos) return null;
   
   var loc = infos.length;
@@ -2914,7 +2914,7 @@ var findPublicPackageInfo = function(infos) {
   version.  This will look through all the registered package infos, only
   searching those that are not private, but including external references.
 */
-Browser.prototype.canonicalPackageId = function(packageId, vers) {
+Browser.prototype.canonicalPackageId = function (packageId, vers) {
   var info = this.packageInfoByName[packageId],
       ret, cur, cvers, rvers;
   
@@ -2938,7 +2938,7 @@ Browser.prototype.canonicalPackageId = function(packageId, vers) {
 };
 
 // get package for canonicalId, instantiate if needed
-Browser.prototype.packageFor = function(canonicalId) {
+Browser.prototype.packageFor = function (canonicalId) {
   var ret = this.packages[canonicalId];
   if (ret) return ret ;
 
@@ -2957,7 +2957,7 @@ Browser.prototype.packageFor = function(canonicalId) {
   Ensures the named canonical packageId and all of its dependent scripts are
   loaded.
 */
-Browser.prototype.ensurePackage = function(canonicalId, done) {
+Browser.prototype.ensurePackage = function (canonicalId, done) {
   var action = this.ensureActions[canonicalId];
   if (action) return action(done); // add another listener
   
@@ -2969,12 +2969,12 @@ Browser.prototype.ensurePackage = function(canonicalId, done) {
   
   var source = this;
   
-  action = once(function(done) {
+  action = once(function (done) {
     var cnt = 1, ready = false, cancelled;
     
     // invoked when an action finishes.  Will resolve this action
     // when all of them finish.
-    var cleanup = function(err) {
+    var cleanup = function (err) {
       if (cancelled) return;
       if (err) {
         cancelled = true;
@@ -3033,12 +3033,12 @@ Browser.prototype.ensurePackage = function(canonicalId, done) {
   action(done); // kick off
 };
 
-Browser.prototype.ensureScript = function(id, url, done) {
+Browser.prototype.ensureScript = function (id, url, done) {
   var action = this.scriptActions[id];
   if (action) return action(done);
   
   var source = this;
-  action = this._action(function() {
+  action = this._action(function () {
     source._loadScript(id, url);
   });
   
@@ -3046,12 +3046,12 @@ Browser.prototype.ensureScript = function(id, url, done) {
   return action(done);
 };
 
-Browser.prototype.ensureStylesheet = function(id, url, done) {
+Browser.prototype.ensureStylesheet = function (id, url, done) {
   var action = this.stylesheetActions[id];
   if (action) return action(done);
   
   var source = this;
-  action = this._action(function() {
+  action = this._action(function () {
     source._loadStylesheet(id, url);
   });
 
@@ -3059,7 +3059,7 @@ Browser.prototype.ensureStylesheet = function(id, url, done) {
   return action(done);
 };
 
-Browser.prototype._injectScript = function(id, url) {
+Browser.prototype._injectScript = function (id, url) {
   var body, el;
 
   body = document.body;
@@ -3069,12 +3069,12 @@ Browser.prototype._injectScript = function(id, url) {
   body = el = null;
 };
 
-Browser.prototype._xhrScript = function(id, url) {
+Browser.prototype._xhrScript = function (id, url) {
   var autowrap = this.autowrap;
 
   var req = new XMLHttpRequest();
   req.open('GET', url, true);
-  req.onreadystatechange = function(evt) {
+  req.onreadystatechange = function (evt) {
     // Accept 200 or 0 for local file requests.
     if (req.readyState !== 4 || (req.status !== 200 && req.status !== 0)) {
       return;
@@ -3082,7 +3082,7 @@ Browser.prototype._xhrScript = function(id, url) {
 
     var src = req.responseText;
     if (autowrap) {
-      src = "tiki.module('" + id + "', function(require, exports, module) {" +
+      src = "tiki.module('" + id + "', function (require, exports, module) {" +
         src + "});" + "tiki.script('" + id + "');";
     }
 
@@ -3096,7 +3096,7 @@ Browser.prototype._xhrScript = function(id, url) {
   req.send(null);
 };
 
-Browser.prototype._loadScript = function(id, url) {
+Browser.prototype._loadScript = function (id, url) {
     if (this.autowrap) {
         this.xhr = true;
         if (!xhrAvailable) {
@@ -3130,7 +3130,7 @@ Browser.prototype._loadScript = function(id, url) {
 
 if (domAvailable) {
   // actually loads the stylesheet.  separated out to ease unit testing
-  Browser.prototype._loadStylesheet = function(id, url) {
+  Browser.prototype._loadStylesheet = function (id, url) {
     var body, el;
     
     body = document.getElementsByTagName('head')[0] || document.body;
@@ -3145,7 +3145,7 @@ if (domAvailable) {
   };
 } else {
   // actually loads the stylesheet.  separated out to ease unit testing
-  Browser.prototype._loadStylesheet = function(id, url) {
+  Browser.prototype._loadStylesheet = function (id, url) {
     DEBUG('Browser#_loadStylesheet() not supported on this platform.');
     this.stylesheet(id);
   };
@@ -3165,13 +3165,13 @@ if (domAvailable) {
 var BrowserPackage = Package.extend();
 Browser.prototype.Package = BrowserPackage;
 
-BrowserPackage.prototype.init = function(id, config, source) {
+BrowserPackage.prototype.init = function (id, config, source) {
   Package.prototype.init.call(this, id, config);
   this.source = source;
 };
 
 // if not self, look for nested packages
-BrowserPackage.prototype.canonicalPackageId = function(packageId, vers) {
+BrowserPackage.prototype.canonicalPackageId = function (packageId, vers) {
   var ret, nested, info;
   
   ret = Package.prototype.canonicalPackageId.call(this, packageId, vers);
@@ -3185,17 +3185,17 @@ BrowserPackage.prototype.canonicalPackageId = function(packageId, vers) {
   return info && semver.compatible(vers,info.version) ? ret : null;
 };
 
-BrowserPackage.prototype.packageFor = function(canonicalId) {
+BrowserPackage.prototype.packageFor = function (canonicalId) {
   var ret = Package.prototype.packageFor.call(this, canonicalId);
   return ret ? ret : this.source.packageFor(canonicalId);
 };
 
-BrowserPackage.prototype.ensurePackage = function(canonicalId, done) {
+BrowserPackage.prototype.ensurePackage = function (canonicalId, done) {
   if (canonicalId === this.id) return done(); 
   this.source.ensurePackage(canonicalId, done);
 };
 
-BrowserPackage.prototype.catalogPackages = function() {
+BrowserPackage.prototype.catalogPackages = function () {
   var ret = [this], nested, key;
 
   nested = this.get('tiki:nested') || {};
@@ -3207,12 +3207,12 @@ BrowserPackage.prototype.catalogPackages = function() {
   return ret ;
 };
 
-BrowserPackage.prototype.exists = function(moduleId) {
+BrowserPackage.prototype.exists = function (moduleId) {
   var canonicalId = this.id+':'+moduleId;
   return !!this.source.factories[canonicalId];
 };
 
-BrowserPackage.prototype.load = function(moduleId) {
+BrowserPackage.prototype.load = function (moduleId) {
   var canonicalId, factory;
   
   canonicalId = this.id+':'+moduleId;

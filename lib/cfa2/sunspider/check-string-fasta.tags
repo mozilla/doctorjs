@@ -8,13 +8,13 @@ A	check-string-fasta.js	/^var last = 42, A = 3877, C = 29573, M = 139968;$/;"	v	
 last	check-string-fasta.js	/^var last = 42, A = 3877, C = 29573, M = 139968;$/;"	v	lineno:6	type:number
 C	check-string-fasta.js	/^var last = 42, A = 3877, C = 29573, M = 139968;$/;"	v	lineno:6	type:number
 M	check-string-fasta.js	/^var last = 42, A = 3877, C = 29573, M = 139968;$/;"	v	lineno:6	type:number
-rand	check-string-fasta.js	/^function rand(max) {$/;"	f	lineno:8	type:number function(number)
+rand	check-string-fasta.js	/^function rand(max) {$/;"	f	lineno:8	type:number function (number)
 ALU	check-string-fasta.js	/^var ALU =$/;"	v	lineno:13	type:string
 IUB	check-string-fasta.js	/^var IUB = {$/;"	v	lineno:22	type:Object
 HomoSap	check-string-fasta.js	/^var HomoSap = {$/;"	v	lineno:29	type:Object
-makeCumulative	check-string-fasta.js	/^function makeCumulative(table) {$/;"	f	lineno:36	type:void function(Object)
-fastaRepeat	check-string-fasta.js	/^function fastaRepeat(n, seq) {$/;"	f	lineno:44	type:string function(number, string)
-fastaRandom	check-string-fasta.js	/^function fastaRandom(n, table) {$/;"	f	lineno:61	type:string function(number, Object)
+makeCumulative	check-string-fasta.js	/^function makeCumulative(table) {$/;"	f	lineno:36	type:void function (Object)
+fastaRepeat	check-string-fasta.js	/^function fastaRepeat(n, seq) {$/;"	f	lineno:44	type:string function (number, string)
+fastaRandom	check-string-fasta.js	/^function fastaRandom(n, table) {$/;"	f	lineno:61	type:string function (number, Object)
 ret	check-string-fasta.js	/^var ret;$/;"	v	lineno:81	type:string
 count	check-string-fasta.js	/^var count = 7;$/;"	v	lineno:83	type:number
 actual1	check-string-fasta.js	/^var actual1 = fastaRepeat(2*count*100000, ALU);$/;"	v	lineno:84	type:string

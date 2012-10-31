@@ -117,7 +117,7 @@ a.demo {
   _gaq.push(['_setAccount', 'UA-18115710-1']);
   _gaq.push(['_trackPageview']);
 
-  (function() {
+  (function () {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
@@ -178,7 +178,7 @@ Doctor JS respects your privacy. He won't share your code with anyone else, nor 
 <script type="application/javascript" src="jquery.qtip-1.0.0-rc3.min.js"></script>
 <script type="application/javascript" src="parse-type.js"></script>
 <script type="application/javascript">
-DrJS = (function(global) {
+DrJS = (function (global) {
 
 function debug(str) {
     if (typeof console === "object" && typeof console.log === "function")
@@ -186,12 +186,12 @@ function debug(str) {
 }
 
 var demos = [ "function id(x) { return x;}\nid(42);\nid('hello, doctor!');"
-            , "function Rectangle(w, h) {\n    this.w = w;\n    this.h = h;\n}\nRectangle.prototype.area = function() {\n    return this.w * this.h;\n};\nvar a = (new Rectangle(2, 3)).area();"
+            , "function Rectangle(w, h) {\n    this.w = w;\n    this.h = h;\n}\nRectangle.prototype.area = function () {\n    return this.w * this.h;\n};\nvar a = (new Rectangle(2, 3)).area();"
             , "function findLargest(a) {\n    if (a.length === 0) throw new Error('empty array');\n    var max = a[0];\n    for (var i = 1, l = a.length; i < l; i++)\n        if (a[i] > max)\n            max = a[i];\n    return max;\n}\nfunction foo() {\n    var a = [1,2,3];\n    try {\n        return findLargest(a);\n    } catch (e) {\n        return e.message;\n    }\n}\nfoo();"
             , "function call(f, x) { return f(x); }\nfunction add1(n) { return n + 1; }\nfunction truncate(s) { return s.substring(0, s.length - 1); }\nvar n = call(add1, 41);\nvar s = call(truncate, 'abcd');"
             ];
 
-var demoStatus = demos.map(function(x) { return false });
+var demoStatus = demos.map(function (x) { return false });
 
 function scrub(str) {
     return str.replace(/</g, '&lt;')
@@ -231,7 +231,7 @@ function go() {
                 }
             },
             api: {
-                onShow: function() {
+                onShow: function () {
                     if (!demoStatus[i])
                         runDemo(i);
                 }
@@ -272,8 +272,8 @@ function runDemo(i) {
         dataType: "json",
         type: "POST",
         data: { src: demos[i] },
-        success: function(json) {
-            var fns = json.filter(function(x) { return x.kind === 'f' });
+        success: function (json) {
+            var fns = json.filter(function (x) { return x.kind === 'f' });
             var s = "";
             for (var j in fns) {
                 var entry = fns[j];
