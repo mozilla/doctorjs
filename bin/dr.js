@@ -41,14 +41,17 @@ var path = require('path');
  
 var cwd = path.dirname(argv[1]);
 var libdir = path.join(cwd, "..", "lib");
- 
-require.paths.unshift(path.join(libdir, "jsctags"));
+var jscdir = path.join(libdir, "jsctags");
+
+function requireJsc(mod) {
+	return require(path.join(jscdir, mod));
+} 
   
 var util = require('util');
-var _ = require('underscore')._;
+var _ = requireJsc('underscore')._;
 var http = require('http');
 var url = require('url');
-var servetypes = require('servetypes');
+var servetypes = requireJsc('servetypes');
 
 function usage(msg) {
   util.print("usage: " + path.basename(argv[1]) + " [options]\n");
@@ -135,7 +138,7 @@ function makeSiteHandler(dir, service) {
     txt: "text/plain"
   };
 
-  return function(req, resp) {
+  return function (req, resp) {
     var query = url.parse(req.url).pathname;
 
     if (service && query === '/analyze') {
@@ -150,7 +153,7 @@ function makeSiteHandler(dir, service) {
     var ext = path.extname(file);
 
     var fs = require('fs');
-    fs.stat(file, function(err, stats) {
+    fs.stat(file, function (err, stats) {
       if (!stats || !stats.isFile()) {
         util.debug("404: " + file);
         resp.writeHead(404, "Not Found", { 'Content-type': 'text/plain' });
