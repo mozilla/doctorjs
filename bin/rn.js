@@ -88,7 +88,7 @@ stdin.on("end", function () {
     ast = parse(src, "js", 1);
   } catch (e) {
     returnJson({ error: e.message, stage: "parse" });
-	return;
+    return;
   }
 
   var json;
