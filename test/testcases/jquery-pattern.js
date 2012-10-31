@@ -1,17 +1,17 @@
-(function (wnd) {
+(function(wnd) {
     var myQuery = {
-        foo: function () {
+        foo: function() {
             window.alert("foo");
         },
 
-        bar: function () {
+        bar: function() {
             return 1;
         },
 
         baz: 3
     };
 
-    myQuery.boo = function () {
+    myQuery.boo = function() {
         return 42;
     };
 

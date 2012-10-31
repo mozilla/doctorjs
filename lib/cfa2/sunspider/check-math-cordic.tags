@@ -5,9 +5,9 @@
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
 AG_CONST	check-math-cordic.js	/^var AG_CONST = 0.6072529350;$/;"	v	lineno:28	type:number
-FIXED	check-math-cordic.js	/^function FIXED(X)$/;"	f	lineno:30	type:number function (number)
-FLOAT	check-math-cordic.js	/^function FLOAT(X)$/;"	f	lineno:35	type:number function (any)
-DEG2RAD	check-math-cordic.js	/^function DEG2RAD(X)$/;"	f	lineno:40	type:number function (any)
+FIXED	check-math-cordic.js	/^function FIXED(X)$/;"	f	lineno:30	type:number function(number)
+FLOAT	check-math-cordic.js	/^function FLOAT(X)$/;"	f	lineno:35	type:number function(any)
+DEG2RAD	check-math-cordic.js	/^function DEG2RAD(X)$/;"	f	lineno:40	type:number function(any)
 Angles	check-math-cordic.js	/^var Angles = [$/;"	v	lineno:45	type:Array[number]
-cordicsincos	check-math-cordic.js	/^function cordicsincos() {$/;"	f	lineno:53	type:number function ()
-cordic	check-math-cordic.js	/^function cordic( runs ) {$/;"	f	lineno:84	type:number function (number)
+cordicsincos	check-math-cordic.js	/^function cordicsincos() {$/;"	f	lineno:53	type:number function()
+cordic	check-math-cordic.js	/^function cordic( runs ) {$/;"	f	lineno:84	type:number function(number)

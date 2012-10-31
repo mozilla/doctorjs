@@ -4,9 +4,9 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-TreeNode	check-access-binary-trees.js	/^function TreeNode(left,right,item){$/;"	f	lineno:5	type:TreeNode function (<null | TreeNode>, <null | TreeNode>, number)
-itemCheck	check-access-binary-trees.js	/^TreeNode.prototype.itemCheck = function (){$/;"	f	lineno:11	type:number function ()
-bottomUpTree	check-access-binary-trees.js	/^function bottomUpTree(item,depth){$/;"	f	lineno:16	type:TreeNode function (number, number)
+TreeNode	check-access-binary-trees.js	/^function TreeNode(left,right,item){$/;"	f	lineno:5	type:TreeNode function(<null | TreeNode>, <null | TreeNode>, number)
+itemCheck	check-access-binary-trees.js	/^TreeNode.prototype.itemCheck = function(){$/;"	f	lineno:11	type:number function()
+bottomUpTree	check-access-binary-trees.js	/^function bottomUpTree(item,depth){$/;"	f	lineno:16	type:TreeNode function(number, number)
 ret	check-access-binary-trees.js	/^var ret;$/;"	v	lineno:29	type:number
 n	check-access-binary-trees.js	/^for ( var n = 4; n <= 7; n += 1 ) {$/;"	v	lineno:31	type:number
 minDepth	check-access-binary-trees.js	/^    var minDepth = 4;$/;"	v	lineno:32	type:number

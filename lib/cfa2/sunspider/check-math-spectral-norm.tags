@@ -4,10 +4,10 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-A	check-math-spectral-norm.js	/^function A(i,j) {$/;"	f	lineno:6	type:number function (number, number)
-Au	check-math-spectral-norm.js	/^function Au(u,v) {$/;"	f	lineno:10	type:void function (Array[number], Array[number])
-Atu	check-math-spectral-norm.js	/^function Atu(u,v) {$/;"	f	lineno:19	type:void function (Array[number], Array[number])
-AtAu	check-math-spectral-norm.js	/^function AtAu(u,v,w) {$/;"	f	lineno:28	type:void function (Array[number], Array[number], Array[number])
-spectralnorm	check-math-spectral-norm.js	/^function spectralnorm(n) {$/;"	f	lineno:33	type:number function (number)
+A	check-math-spectral-norm.js	/^function A(i,j) {$/;"	f	lineno:6	type:number function(number, number)
+Au	check-math-spectral-norm.js	/^function Au(u,v) {$/;"	f	lineno:10	type:void function(Array[number], Array[number])
+Atu	check-math-spectral-norm.js	/^function Atu(u,v) {$/;"	f	lineno:19	type:void function(Array[number], Array[number])
+AtAu	check-math-spectral-norm.js	/^function AtAu(u,v,w) {$/;"	f	lineno:28	type:void function(Array[number], Array[number], Array[number])
+spectralnorm	check-math-spectral-norm.js	/^function spectralnorm(n) {$/;"	f	lineno:33	type:number function(number)
 actual	check-math-spectral-norm.js	/^var actual = '';$/;"	v	lineno:49	type:string
 i	check-math-spectral-norm.js	/^for (var i = 6; i <= 48; i *= 2) {$/;"	v	lineno:50	type:number

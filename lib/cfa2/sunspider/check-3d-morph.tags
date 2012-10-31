@@ -7,7 +7,7 @@
 loops	check-3d-morph.js	/^var loops = 15$/;"	v	lineno:26	type:number
 nx	check-3d-morph.js	/^var nx = 120$/;"	v	lineno:27	type:number
 nz	check-3d-morph.js	/^var nz = 120$/;"	v	lineno:28	type:number
-morph	check-3d-morph.js	/^function morph(a, f) {$/;"	f	lineno:30	type:void function (Array[number], number)
+morph	check-3d-morph.js	/^function morph(a, f) {$/;"	f	lineno:30	type:void function(Array[number], number)
 a	check-3d-morph.js	/^var a = Array()$/;"	v	lineno:43	type:<null | Array[number]>
 i	check-3d-morph.js	/^for (var i=0; i < nx*nz*3; ++i) $/;"	v	lineno:44	type:any
 i	check-3d-morph.js	/^for (var i = 0; i < loops; ++i) {$/;"	v	lineno:47	type:any

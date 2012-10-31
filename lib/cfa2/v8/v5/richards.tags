@@ -6,58 +6,58 @@
 !_TAG_PROGRAM_VERSION	0.1	//
 COUNT	richards.js	/^var COUNT = 1000;$/;"	v	lineno:75	type:number
 DATA_SIZE	richards.js	/^var DATA_SIZE = 4;$/;"	v	lineno:496	type:number
-DeviceTask	richards.js	/^function DeviceTask(scheduler) {$/;"	f	lineno:391	type:DeviceTask function (Scheduler)
+DeviceTask	richards.js	/^function DeviceTask(scheduler) {$/;"	f	lineno:391	type:DeviceTask function(Scheduler)
 EXPECTED_HOLD_COUNT	richards.js	/^var EXPECTED_HOLD_COUNT = 928;$/;"	v	lineno:85	type:number
 EXPECTED_QUEUE_COUNT	richards.js	/^var EXPECTED_QUEUE_COUNT = 2322;$/;"	v	lineno:84	type:number
-HandlerTask	richards.js	/^function HandlerTask(scheduler) {$/;"	f	lineno:454	type:HandlerTask function (Scheduler)
+HandlerTask	richards.js	/^function HandlerTask(scheduler) {$/;"	f	lineno:454	type:HandlerTask function(Scheduler)
 ID_DEVICE_A	richards.js	/^var ID_DEVICE_A   = 4;$/;"	v	lineno:107	type:number
 ID_DEVICE_B	richards.js	/^var ID_DEVICE_B   = 5;$/;"	v	lineno:108	type:number
 ID_HANDLER_A	richards.js	/^var ID_HANDLER_A  = 2;$/;"	v	lineno:105	type:number
 ID_HANDLER_B	richards.js	/^var ID_HANDLER_B  = 3;$/;"	v	lineno:106	type:number
 ID_IDLE	richards.js	/^var ID_IDLE       = 0;$/;"	v	lineno:103	type:number
 ID_WORKER	richards.js	/^var ID_WORKER     = 1;$/;"	v	lineno:104	type:number
-IdleTask	richards.js	/^function IdleTask(scheduler, v1, count) {$/;"	f	lineno:363	type:IdleTask function (Scheduler, number, number)
+IdleTask	richards.js	/^function IdleTask(scheduler, v1, count) {$/;"	f	lineno:363	type:IdleTask function(Scheduler, number, number)
 KIND_DEVICE	richards.js	/^var KIND_DEVICE   = 0;$/;"	v	lineno:111	type:number
 KIND_WORK	richards.js	/^var KIND_WORK     = 1;$/;"	v	lineno:112	type:number
 NUMBER_OF_IDS	richards.js	/^var NUMBER_OF_IDS = 6;$/;"	v	lineno:109	type:number
-Packet	richards.js	/^function Packet(link, id, kind) {$/;"	f	lineno:510	type:Packet function (<null | Packet>, number, number)
+Packet	richards.js	/^function Packet(link, id, kind) {$/;"	f	lineno:510	type:Packet function(<null | Packet>, number, number)
 STATE_HELD	richards.js	/^var STATE_HELD = 4;$/;"	v	lineno:287	type:number
 STATE_NOT_HELD	richards.js	/^var STATE_NOT_HELD = ~STATE_HELD;$/;"	v	lineno:290	type:number
 STATE_RUNNABLE	richards.js	/^var STATE_RUNNABLE = 1;$/;"	v	lineno:276	type:number
 STATE_RUNNING	richards.js	/^var STATE_RUNNING = 0;$/;"	v	lineno:271	type:number
 STATE_SUSPENDED	richards.js	/^var STATE_SUSPENDED = 2;$/;"	v	lineno:282	type:number
 STATE_SUSPENDED_RUNNABLE	richards.js	/^var STATE_SUSPENDED_RUNNABLE = STATE_SUSPENDED | STATE_RUNNABLE;$/;"	v	lineno:289	type:number
-Scheduler	richards.js	/^function Scheduler() {$/;"	f	lineno:94	type:Scheduler function ()
-TaskControlBlock	richards.js	/^function TaskControlBlock(link, id, priority, queue, task) {$/;"	f	lineno:255	type:TaskControlBlock function (<null | TaskControlBlock>, number, number, <null | Packet>, <IdleTask | WorkerTask | HandlerTask | DeviceTask>)
-WorkerTask	richards.js	/^function WorkerTask(scheduler, v1, v2) {$/;"	f	lineno:419	type:WorkerTask function (Scheduler, number, number)
-addDeviceTask	richards.js	/^Scheduler.prototype.addDeviceTask = function (id, priority, queue) {$/;"	f	lineno:151	type:void function (number, number, null)
-addHandlerTask	richards.js	/^Scheduler.prototype.addHandlerTask = function (id, priority, queue) {$/;"	f	lineno:141	type:void function (number, number, Packet)
-addIdleTask	richards.js	/^Scheduler.prototype.addIdleTask = function (id, priority, queue, count) {$/;"	f	lineno:121	type:void function (number, number, null, number)
-addRunningTask	richards.js	/^Scheduler.prototype.addRunningTask = function (id, priority, queue, task) {$/;"	f	lineno:162	type:void function (number, number, null, IdleTask)
-addTask	richards.js	/^Scheduler.prototype.addTask = function (id, priority, queue, task) {$/;"	f	lineno:174	type:void function (number, number, <null | Packet>, <IdleTask | WorkerTask | HandlerTask | DeviceTask>)
-addTo	richards.js	/^Packet.prototype.addTo = function (queue) {$/;"	f	lineno:522	type:<number | null | Packet> function (<number | null | Packet>)
-addWorkerTask	richards.js	/^Scheduler.prototype.addWorkerTask = function (id, priority, queue) {$/;"	f	lineno:131	type:void function (number, number, Packet)
-checkPriorityAdd	richards.js	/^TaskControlBlock.prototype.checkPriorityAdd = function (task, packet) {$/;"	f	lineno:340	type:<null | TaskControlBlock> function (<null | TaskControlBlock>, <number | null | Packet>)
-holdCurrent	richards.js	/^Scheduler.prototype.holdCurrent = function () {$/;"	f	lineno:215	type:<null | TaskControlBlock> function ()
-isHeldOrSuspended	richards.js	/^TaskControlBlock.prototype.isHeldOrSuspended = function () {$/;"	f	lineno:304	type:boolean function ()
-markAsHeld	richards.js	/^TaskControlBlock.prototype.markAsHeld = function () {$/;"	f	lineno:300	type:void function ()
-markAsNotHeld	richards.js	/^TaskControlBlock.prototype.markAsNotHeld = function () {$/;"	f	lineno:296	type:void function ()
-markAsRunnable	richards.js	/^TaskControlBlock.prototype.markAsRunnable = function () {$/;"	f	lineno:312	type:void function ()
-markAsSuspended	richards.js	/^TaskControlBlock.prototype.markAsSuspended = function () {$/;"	f	lineno:308	type:void function ()
-queue	richards.js	/^Scheduler.prototype.queue = function (packet) {$/;"	f	lineno:236	type:<null | TaskControlBlock> function (<number | null | Packet>)
-release	richards.js	/^Scheduler.prototype.release = function (id) {$/;"	f	lineno:199	type:<null | TaskControlBlock> function (number)
-run	richards.js	/^DeviceTask.prototype.run = function (packet) {$/;"	f	lineno:396	type:<null | TaskControlBlock> function (<null | Packet>)
-run	richards.js	/^HandlerTask.prototype.run = function (packet) {$/;"	f	lineno:460	type:<null | TaskControlBlock> function (<null | Packet>)
-run	richards.js	/^IdleTask.prototype.run = function (packet) {$/;"	f	lineno:369	type:<null | TaskControlBlock> function (<null | Packet>)
-run	richards.js	/^TaskControlBlock.prototype.run = function () {$/;"	f	lineno:319	type:<null | TaskControlBlock> function ()
-run	richards.js	/^WorkerTask.prototype.run = function (packet) {$/;"	f	lineno:425	type:<null | TaskControlBlock> function (<null | Packet>)
-runRichards	richards.js	/^function runRichards() {$/;"	f	lineno:42	type:void function ()
-schedule	richards.js	/^Scheduler.prototype.schedule = function () {$/;"	f	lineno:183	type:void function ()
-setRunning	richards.js	/^TaskControlBlock.prototype.setRunning = function () {$/;"	f	lineno:292	type:void function ()
-suspendCurrent	richards.js	/^Scheduler.prototype.suspendCurrent = function () {$/;"	f	lineno:225	type:<null | TaskControlBlock> function ()
-toString	richards.js	/^DeviceTask.prototype.toString = function () {$/;"	f	lineno:408	type:string function ()
-toString	richards.js	/^HandlerTask.prototype.toString = function () {$/;"	f	lineno:488	type:string function ()
-toString	richards.js	/^IdleTask.prototype.toString = function () {$/;"	f	lineno:381	type:string function ()
-toString	richards.js	/^Packet.prototype.toString = function () {$/;"	f	lineno:532	type:string function ()
-toString	richards.js	/^TaskControlBlock.prototype.toString = function () {$/;"	f	lineno:351	type:string function ()
-toString	richards.js	/^WorkerTask.prototype.toString = function () {$/;"	f	lineno:445	type:string function ()
+Scheduler	richards.js	/^function Scheduler() {$/;"	f	lineno:94	type:Scheduler function()
+TaskControlBlock	richards.js	/^function TaskControlBlock(link, id, priority, queue, task) {$/;"	f	lineno:255	type:TaskControlBlock function(<null | TaskControlBlock>, number, number, <null | Packet>, <IdleTask | WorkerTask | HandlerTask | DeviceTask>)
+WorkerTask	richards.js	/^function WorkerTask(scheduler, v1, v2) {$/;"	f	lineno:419	type:WorkerTask function(Scheduler, number, number)
+addDeviceTask	richards.js	/^Scheduler.prototype.addDeviceTask = function (id, priority, queue) {$/;"	f	lineno:151	type:void function(number, number, null)
+addHandlerTask	richards.js	/^Scheduler.prototype.addHandlerTask = function (id, priority, queue) {$/;"	f	lineno:141	type:void function(number, number, Packet)
+addIdleTask	richards.js	/^Scheduler.prototype.addIdleTask = function (id, priority, queue, count) {$/;"	f	lineno:121	type:void function(number, number, null, number)
+addRunningTask	richards.js	/^Scheduler.prototype.addRunningTask = function (id, priority, queue, task) {$/;"	f	lineno:162	type:void function(number, number, null, IdleTask)
+addTask	richards.js	/^Scheduler.prototype.addTask = function (id, priority, queue, task) {$/;"	f	lineno:174	type:void function(number, number, <null | Packet>, <IdleTask | WorkerTask | HandlerTask | DeviceTask>)
+addTo	richards.js	/^Packet.prototype.addTo = function (queue) {$/;"	f	lineno:522	type:<number | null | Packet> function(<number | null | Packet>)
+addWorkerTask	richards.js	/^Scheduler.prototype.addWorkerTask = function (id, priority, queue) {$/;"	f	lineno:131	type:void function(number, number, Packet)
+checkPriorityAdd	richards.js	/^TaskControlBlock.prototype.checkPriorityAdd = function (task, packet) {$/;"	f	lineno:340	type:<null | TaskControlBlock> function(<null | TaskControlBlock>, <number | null | Packet>)
+holdCurrent	richards.js	/^Scheduler.prototype.holdCurrent = function () {$/;"	f	lineno:215	type:<null | TaskControlBlock> function()
+isHeldOrSuspended	richards.js	/^TaskControlBlock.prototype.isHeldOrSuspended = function () {$/;"	f	lineno:304	type:boolean function()
+markAsHeld	richards.js	/^TaskControlBlock.prototype.markAsHeld = function () {$/;"	f	lineno:300	type:void function()
+markAsNotHeld	richards.js	/^TaskControlBlock.prototype.markAsNotHeld = function () {$/;"	f	lineno:296	type:void function()
+markAsRunnable	richards.js	/^TaskControlBlock.prototype.markAsRunnable = function () {$/;"	f	lineno:312	type:void function()
+markAsSuspended	richards.js	/^TaskControlBlock.prototype.markAsSuspended = function () {$/;"	f	lineno:308	type:void function()
+queue	richards.js	/^Scheduler.prototype.queue = function (packet) {$/;"	f	lineno:236	type:<null | TaskControlBlock> function(<number | null | Packet>)
+release	richards.js	/^Scheduler.prototype.release = function (id) {$/;"	f	lineno:199	type:<null | TaskControlBlock> function(number)
+run	richards.js	/^DeviceTask.prototype.run = function (packet) {$/;"	f	lineno:396	type:<null | TaskControlBlock> function(<null | Packet>)
+run	richards.js	/^HandlerTask.prototype.run = function (packet) {$/;"	f	lineno:460	type:<null | TaskControlBlock> function(<null | Packet>)
+run	richards.js	/^IdleTask.prototype.run = function (packet) {$/;"	f	lineno:369	type:<null | TaskControlBlock> function(<null | Packet>)
+run	richards.js	/^TaskControlBlock.prototype.run = function () {$/;"	f	lineno:319	type:<null | TaskControlBlock> function()
+run	richards.js	/^WorkerTask.prototype.run = function (packet) {$/;"	f	lineno:425	type:<null | TaskControlBlock> function(<null | Packet>)
+runRichards	richards.js	/^function runRichards() {$/;"	f	lineno:42	type:void function()
+schedule	richards.js	/^Scheduler.prototype.schedule = function () {$/;"	f	lineno:183	type:void function()
+setRunning	richards.js	/^TaskControlBlock.prototype.setRunning = function () {$/;"	f	lineno:292	type:void function()
+suspendCurrent	richards.js	/^Scheduler.prototype.suspendCurrent = function () {$/;"	f	lineno:225	type:<null | TaskControlBlock> function()
+toString	richards.js	/^DeviceTask.prototype.toString = function () {$/;"	f	lineno:408	type:string function()
+toString	richards.js	/^HandlerTask.prototype.toString = function () {$/;"	f	lineno:488	type:string function()
+toString	richards.js	/^IdleTask.prototype.toString = function () {$/;"	f	lineno:381	type:string function()
+toString	richards.js	/^Packet.prototype.toString = function () {$/;"	f	lineno:532	type:string function()
+toString	richards.js	/^TaskControlBlock.prototype.toString = function () {$/;"	f	lineno:351	type:string function()
+toString	richards.js	/^WorkerTask.prototype.toString = function () {$/;"	f	lineno:445	type:string function()

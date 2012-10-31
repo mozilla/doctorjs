@@ -77,7 +77,7 @@ function formatType(type) {
         return type;
 
     if (type.kind === "function") {
-        return "function (" +
+        return "function(" +
                type.argTypes.map(formatType).join(", ") +
                ") &rarr; " +
                formatType(type.returnType);

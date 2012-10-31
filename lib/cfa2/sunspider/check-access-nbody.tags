@@ -7,16 +7,16 @@
 PI	check-access-nbody.js	/^var PI = 3.141592653589793;$/;"	v	lineno:5	type:number
 SOLAR_MASS	check-access-nbody.js	/^var SOLAR_MASS = 4 * PI * PI;$/;"	v	lineno:6	type:number
 DAYS_PER_YEAR	check-access-nbody.js	/^var DAYS_PER_YEAR = 365.24;$/;"	v	lineno:7	type:number
-Body	check-access-nbody.js	/^function Body(x,y,z,vx,vy,vz,mass){$/;"	f	lineno:9	type:Body function (number, number, number, number, number, number, number)
-offsetMomentum	check-access-nbody.js	/^Body.prototype.offsetMomentum = function (px,py,pz) {$/;"	f	lineno:19	type:Body function (number, number, number)
-Jupiter	check-access-nbody.js	/^function Jupiter(){$/;"	f	lineno:26	type:Body function ()
-Saturn	check-access-nbody.js	/^function Saturn(){$/;"	f	lineno:38	type:Body function ()
-Uranus	check-access-nbody.js	/^function Uranus(){$/;"	f	lineno:50	type:Body function ()
-Neptune	check-access-nbody.js	/^function Neptune(){$/;"	f	lineno:62	type:Body function ()
-Sun	check-access-nbody.js	/^function Sun(){$/;"	f	lineno:74	type:Body function ()
-NBodySystem	check-access-nbody.js	/^function NBodySystem(bodies){$/;"	f	lineno:79	type:NBodySystem function (Array[Body])
-advance	check-access-nbody.js	/^NBodySystem.prototype.advance = function (dt){$/;"	f	lineno:95	type:void function (number)
-energy	check-access-nbody.js	/^NBodySystem.prototype.energy = function (){$/;"	f	lineno:128	type:number function ()
+Body	check-access-nbody.js	/^function Body(x,y,z,vx,vy,vz,mass){$/;"	f	lineno:9	type:Body function(number, number, number, number, number, number, number)
+offsetMomentum	check-access-nbody.js	/^Body.prototype.offsetMomentum = function(px,py,pz) {$/;"	f	lineno:19	type:Body function(number, number, number)
+Jupiter	check-access-nbody.js	/^function Jupiter(){$/;"	f	lineno:26	type:Body function()
+Saturn	check-access-nbody.js	/^function Saturn(){$/;"	f	lineno:38	type:Body function()
+Uranus	check-access-nbody.js	/^function Uranus(){$/;"	f	lineno:50	type:Body function()
+Neptune	check-access-nbody.js	/^function Neptune(){$/;"	f	lineno:62	type:Body function()
+Sun	check-access-nbody.js	/^function Sun(){$/;"	f	lineno:74	type:Body function()
+NBodySystem	check-access-nbody.js	/^function NBodySystem(bodies){$/;"	f	lineno:79	type:NBodySystem function(Array[Body])
+advance	check-access-nbody.js	/^NBodySystem.prototype.advance = function(dt){$/;"	f	lineno:95	type:void function(number)
+energy	check-access-nbody.js	/^NBodySystem.prototype.energy = function(){$/;"	f	lineno:128	type:number function()
 ret	check-access-nbody.js	/^var ret;$/;"	v	lineno:154	type:number
 n	check-access-nbody.js	/^for ( var n = 3; n <= 24; n *= 2 ) {$/;"	v	lineno:156	type:number
-%anonymous_function	check-access-nbody.js	/^    (function (){$/;"	f	lineno:157	type:void function ()
+%anonymous_function	check-access-nbody.js	/^    (function(){$/;"	f	lineno:157	type:void function()

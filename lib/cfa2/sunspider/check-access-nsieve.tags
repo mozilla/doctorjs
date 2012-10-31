@@ -4,7 +4,7 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-pad	check-access-nsieve.js	/^function pad(number,width){$/;"	f	lineno:6	type:string function (any, any)
-nsieve	check-access-nsieve.js	/^function nsieve(m, isPrime){$/;"	f	lineno:15	type:number function (number, Array[boolean])
+pad	check-access-nsieve.js	/^function pad(number,width){$/;"	f	lineno:6	type:string function(any, any)
+nsieve	check-access-nsieve.js	/^function nsieve(m, isPrime){$/;"	f	lineno:15	type:number function(number, Array[boolean])
 ret	check-access-nsieve.js	/^var ret = 0;$/;"	v	lineno:30	type:number
-sieve	check-access-nsieve.js	/^function sieve() {$/;"	f	lineno:31	type:void function ()
+sieve	check-access-nsieve.js	/^function sieve() {$/;"	f	lineno:31	type:void function()

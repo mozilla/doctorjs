@@ -8,9 +8,9 @@ x	check-mont.js	/^var x = [9385, 32112, 25383, 16317, 30138, 14565, 17812, 24500
 n	check-mont.js	/^var n = [27875, 25925, 30422, 12227, 27798, 32170, 10873, 21748, 30629, 26296, 20697, 5125, 4815, 2221, 14392, 23369, 5560, 2, 0, 0];$/;"	v	lineno:4	type:Array[number]
 np	check-mont.js	/^var np = 18229;$/;"	v	lineno:5	type:number
 expected	check-mont.js	/^var expected = [18770, 31456, 17999, 32635, 27508, 29131, 2856, 16233, 5439, 27580, 7093, 18192, 30804, 5472, 8529, 28649, 14852, 0, 0, 0];$/;"	v	lineno:6	type:Array[number]
-copy_	check-mont.js	/^function copy_(x,y) {$/;"	f	lineno:23	type:void function (Array[number], Array[number])
-copyInt_	check-mont.js	/^function copyInt_(x,n) {$/;"	f	lineno:33	type:void function (Array[number], number)
-greater	check-mont.js	/^function greater(x,y) {$/;"	f	lineno:42	type:number function (Array[number], Array[number])
-mont_	check-mont.js	/^function mont_(x,y,n,np) {$/;"	f	lineno:73	type:void function (Array[number], Array[number], Array[number], number)
+copy_	check-mont.js	/^function copy_(x,y) {$/;"	f	lineno:23	type:void function(Array[number], Array[number])
+copyInt_	check-mont.js	/^function copyInt_(x,n) {$/;"	f	lineno:33	type:void function(Array[number], number)
+greater	check-mont.js	/^function greater(x,y) {$/;"	f	lineno:42	type:number function(Array[number], Array[number])
+mont_	check-mont.js	/^function mont_(x,y,n,np) {$/;"	f	lineno:73	type:void function(Array[number], Array[number], Array[number], number)
 passed	check-mont.js	/^var passed = expected.length == x.length;$/;"	v	lineno:114	type:boolean
 i	check-mont.js	/^for (var i = 0; i < expected.length; i++) {$/;"	v	lineno:115	type:number

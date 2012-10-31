@@ -4,24 +4,24 @@
 !_TAG_PROGRAM_NAME	jsctags	//
 !_TAG_PROGRAM_URL	http://github.com/pcwalton/jsctags	/GitHub repository/
 !_TAG_PROGRAM_VERSION	0.1	//
-%anonymous_function	splay.js	/^    this.root_.traverse_(function (node) { result.push(node.key); });$/;"	f	lineno:256	type:void function (<null | Node>)
-GenerateKey	splay.js	/^function GenerateKey() {$/;"	f	lineno:59	type:number function ()
-GeneratePayloadTree	splay.js	/^function GeneratePayloadTree(depth, key) {$/;"	f	lineno:44	type:Object function (number, number)
-InsertNewNode	splay.js	/^function InsertNewNode() {$/;"	f	lineno:66	type:number function ()
-Node	splay.js	/^SplayTree.Node = function (key, value) {$/;"	f	lineno:340	type:Node function (<number | null>, <null | Object>)
-SplayRun	splay.js	/^function SplayRun() {$/;"	f	lineno:106	type:void function ()
-SplaySetup	splay.js	/^function SplaySetup() {$/;"	f	lineno:78	type:void function ()
-SplayTearDown	splay.js	/^function SplayTearDown() {$/;"	f	lineno:84	type:void function ()
-SplayTree	splay.js	/^function SplayTree() {$/;"	f	lineno:125	type:SplayTree function ()
-exportKeys	splay.js	/^SplayTree.prototype.exportKeys = function () {$/;"	f	lineno:253	type:Array[number] function ()
-find	splay.js	/^SplayTree.prototype.find = function (key) {$/;"	f	lineno:218	type:<null | Node> function (number)
-findGreatestLessThan	splay.js	/^SplayTree.prototype.findGreatestLessThan = function (key) {$/;"	f	lineno:231	type:<null | Node> function (number)
-insert	splay.js	/^SplayTree.prototype.insert = function (key, value) {$/;"	f	lineno:154	type:void function (number, Object)
-isEmpty	splay.js	/^SplayTree.prototype.isEmpty = function () {$/;"	f	lineno:141	type:boolean function ()
+%anonymous_function	splay.js	/^    this.root_.traverse_(function(node) { result.push(node.key); });$/;"	f	lineno:256	type:void function(<null | Node>)
+GenerateKey	splay.js	/^function GenerateKey() {$/;"	f	lineno:59	type:number function()
+GeneratePayloadTree	splay.js	/^function GeneratePayloadTree(depth, key) {$/;"	f	lineno:44	type:Object function(number, number)
+InsertNewNode	splay.js	/^function InsertNewNode() {$/;"	f	lineno:66	type:number function()
+Node	splay.js	/^SplayTree.Node = function(key, value) {$/;"	f	lineno:340	type:Node function(<number | null>, <null | Object>)
+SplayRun	splay.js	/^function SplayRun() {$/;"	f	lineno:106	type:void function()
+SplaySetup	splay.js	/^function SplaySetup() {$/;"	f	lineno:78	type:void function()
+SplayTearDown	splay.js	/^function SplayTearDown() {$/;"	f	lineno:84	type:void function()
+SplayTree	splay.js	/^function SplayTree() {$/;"	f	lineno:125	type:SplayTree function()
+exportKeys	splay.js	/^SplayTree.prototype.exportKeys = function() {$/;"	f	lineno:253	type:Array[number] function()
+find	splay.js	/^SplayTree.prototype.find = function(key) {$/;"	f	lineno:218	type:<null | Node> function(number)
+findGreatestLessThan	splay.js	/^SplayTree.prototype.findGreatestLessThan = function(key) {$/;"	f	lineno:231	type:<null | Node> function(number)
+insert	splay.js	/^SplayTree.prototype.insert = function(key, value) {$/;"	f	lineno:154	type:void function(number, Object)
+isEmpty	splay.js	/^SplayTree.prototype.isEmpty = function() {$/;"	f	lineno:141	type:boolean function()
 kSplayTreeModifications	splay.js	/^var kSplayTreeModifications = 80;$/;"	v	lineno:38	type:number
 kSplayTreePayloadDepth	splay.js	/^var kSplayTreePayloadDepth = 5;$/;"	v	lineno:39	type:number
 kSplayTreeSize	splay.js	/^var kSplayTreeSize = 8000;$/;"	v	lineno:37	type:number
-remove	splay.js	/^SplayTree.prototype.remove = function (key) {$/;"	f	lineno:187	type:<null | Node> function (number)
+remove	splay.js	/^SplayTree.prototype.remove = function(key) {$/;"	f	lineno:187	type:<null | Node> function(number)
 splayTree	splay.js	/^var splayTree = null;$/;"	v	lineno:41	type:<null | SplayTree>
-splay_	splay.js	/^SplayTree.prototype.splay_ = function (key) {$/;"	f	lineno:272	type:void function (number)
-traverse_	splay.js	/^SplayTree.Node.prototype.traverse_ = function (f) {$/;"	f	lineno:365	type:void function (void function (<null | Node>))
+splay_	splay.js	/^SplayTree.prototype.splay_ = function(key) {$/;"	f	lineno:272	type:void function(number)
+traverse_	splay.js	/^SplayTree.Node.prototype.traverse_ = function(f) {$/;"	f	lineno:365	type:void function(void function(<null | Node>))

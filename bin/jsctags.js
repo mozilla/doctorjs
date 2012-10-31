@@ -92,7 +92,7 @@ function idFor(st) {
 
 var librootIds = {};
 if ('libroot' in opts) {
-    opts.libroot.forEach(function (libroot) {
+    opts.libroot.forEach(function(libroot) {
         var st = fs.statSync(libroot);
         librootIds[idFor(st)] = true;
     });
@@ -118,7 +118,7 @@ function getModuleInfo (fullPath) {
         var p, st;
         try {
             p = dir;
-            _(i).times(function () { p = path.dirname(p); });
+            _(i).times(function() { p = path.dirname(p); });
             st = fs.statSync(p);
         } catch (e) {
             break;
@@ -180,7 +180,7 @@ function processPath (p) {
 
     var ext = path.extname(p).toLowerCase();
     if (st.isDirectory()) {
-        fs.readdirSync(p).forEach(function (filename) {
+        fs.readdirSync(p).forEach(function(filename) {
             processPath(path.join(p, filename));
         });
     } else if (ext === ".js" || ext === ".jsm") {

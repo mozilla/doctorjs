@@ -2,7 +2,7 @@ function foo() {
     return x;
 }
 
-var bar = function () {
+var bar = function() {
     return y;
 };
 
