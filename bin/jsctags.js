@@ -50,6 +50,7 @@ var Tags = ctags.Tags;
 function usage() {
     util.puts("usage: jsctags [options] path0 [.. pathN]");
     util.puts("options:");
+    util.puts("    -e, --emacs           emit Emacs TAGS");
     util.puts("    -f, --output file     place output in the given file (-f " +
              "- for stdout)");
     util.puts("    -h, --help            display this usage info");
@@ -65,7 +66,7 @@ function usage() {
 
 var opts;
 try {
-    opts = getopt("help|h", "jsonp|j=s", "libroot|L=s@", "oneprog", "output|o|f=s",
+    opts = getopt("help|h", "emacs|e", "jsonp|j=s", "libroot|L=s@", "oneprog", "output|o|f=s",
                   "sort|=s", "warning|W=s");
 } catch (e) {
     util.puts(e);
@@ -260,12 +261,16 @@ if (opts.hasOwnProperty('output')) {
     }
 } else if (opts.hasOwnProperty('jsonp')) {
     out = fs.createWriteStream("tags.jsonp");
+} else if (opts.hasOwnProperty('emacs')) {
+    out = fs.createWriteStream("TAGS");
 } else {
     out = fs.createWriteStream("tags");
 }
 
 if (opts.hasOwnProperty('jsonp')) {
     tags.writeJSONP(out, opts.jsonp);
+} else if (opts.hasOwnProperty('emacs')) {
+    tags.writeEmacs(out, opts);
 } else {
     tags.write(out, opts);
 }
