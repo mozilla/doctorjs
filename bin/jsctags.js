@@ -1,4 +1,10 @@
 #!/usr/bin/env node
+/**
+ * If you get:
+ *   /usr/bin/env: node: No such file or directory
+ * Please install nodejs-legacy.
+ */
+
 /* ***** BEGIN LICENSE BLOCK *****
  * Version: MPL 1.1/GPL 2.0/LGPL 2.1
  *
