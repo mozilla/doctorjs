@@ -38,32 +38,57 @@
 
 var argv = process.argv;
 var path = require('path');
- 
+
+
 var cwd = path.dirname(argv[1]);
 var libdir = path.join(cwd, "..", "lib");
- 
-require.paths.unshift(path.join(libdir, "jsctags"));
+var jscdir = path.join(libdir, "jsctags");
+
+function requireJsc(mod) {
+	return require(path.join(jscdir, mod));
+}
 
 var util = require('util');
-var _ = require('underscore')._;
+var _ = requireJsc('underscore')._;
 var getTags = require('../lib/cfa2/jscfa').getTags;
 var parse = require('../narcissus/lib/parser').parse;
 
-var stdin = process.openStdin();
+// prints a value and exits
+function returnVal(val) {
+  // we're only allowed to return one value
+  if(returnVal.returned) return false;
+  returnVal.returned = true;
 
+  // wait for the value to be written
+  process.stdout.once('drain', function () {
+	process.exit();
+  });
+
+  util.print(val);
+  return true;
+}
+// static variable
+returnVal.returned = false;
+
+// prints an object as json string and exits
+function returnJson(obj) {
+  return returnVal(JSON.stringify(obj));
+}
+
+var stdin = process.openStdin();
 stdin.setEncoding("utf8");
 
 var buf = [];
 stdin.on("data", _(buf.push).bind(buf));
-stdin.on("end", function() {
+stdin.on("end", function () {
   var src = buf.join("");
   var lines, ast;
   try {
     lines = src.split("\n");
     ast = parse(src, "js", 1);
   } catch (e) {
-    util.print(JSON.stringify({ error: e.message, stage: "parse" }));
-    process.exit();
+    returnJson({ error: e.message, stage: "parse" });
+    return;
   }
 
   var json;
@@ -73,6 +98,6 @@ stdin.on("end", function() {
     json = { error: e.message, stage: "analysis" };
   }
 
-  util.print(JSON.stringify(json));
-  process.exit();
+  returnJson(json);
+  return;
 });
