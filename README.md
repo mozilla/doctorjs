@@ -27,6 +27,10 @@ Requirements
 
 Building
 --------
+You have to set up the narcissus subrepo before building :
+
+* `git submodule update --init --recursive`
+
 To install:
 
 * `make install`
