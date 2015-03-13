@@ -29,6 +29,7 @@ Building
 --------
 To install:
 
+* `git submodule update --init --recursive`
 * `make install`
 
 To uninstall:
