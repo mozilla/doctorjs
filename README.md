@@ -29,6 +29,7 @@ Building
 --------
 To install:
 
+* `git submodule update --init --recursive`
 * `make install`
 
 To uninstall:
@@ -68,4 +69,3 @@ The directory structure mostly follows the CommonJS packaging scheme:
 [6]: http://mxr.mozilla.org/mozilla/source/js/narcissus/
 
 [parser]: http://localhost:8080/html/parser.html
-
